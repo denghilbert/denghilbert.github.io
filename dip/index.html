@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
+        content="DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering.">
   <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Nerfies: Deformable Neural Radiance Fields</title>
@@ -42,45 +42,6 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
 
 
 <section class="hero">
@@ -88,38 +49,31 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
+          <h1 class="title is-1 publication-title">DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
+              <a href="">Youming Deng</a><sup>1</sup>,</span>
             <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
+              <a href="https://sunshineatnoon.github.io">Xueting Li</a><sup>2</sup>,</span>
             <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
+              <a href="https://www.sifeiliu.net">Sifei Liu</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
+              <a href="http://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a><sup>3,4</sup>,
             </span>
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
+            <span class="author-block"><sup>1</sup>Wuhan University,</span>
+            <span class="author-block"><sup>2</sup>NVIDIA Research,</span>
+            <span class="author-block"><sup>3</sup>UC Merced,</span>
+            <span class="author-block"><sup>4</sup>Google Research</span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
               <!-- PDF Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://arxiv.org/pdf/2011.12948"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
@@ -127,9 +81,9 @@
                   </span>
                   <span>Paper</span>
                 </a>
-              </span>
+              </span> -->
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
+                <a href="https://arxiv.org/"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -139,7 +93,7 @@
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                <a href="https://www.youtube.com/watch?v=THcYvkiiumM"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -149,7 +103,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/google/nerfies"
+                <a href="https://github.com/denghilbert/DIP"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -158,14 +112,14 @@
                   </a>
               </span>
               <!-- Dataset Link. -->
-              <span class="link-block">
+              <!-- <span class="link-block">
                 <a href="https://github.com/google/nerfies/releases/tag/0.1"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
                   </span>
                   <span>Data</span>
-                  </a>
+                  </a> -->
             </div>
 
           </div>
@@ -175,7 +129,7 @@
   </div>
 </section>
 
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video id="teaser" autoplay muted loop playsinline height="100%">
@@ -189,16 +143,59 @@
       </h2>
     </div>
   </div>
+</section> -->
+
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            We present a physics-based inverse rendering method that learns the illumination, geometry, 
+            and materials of a scene from posed multi-view RGB images. 
+            To model the illumination of a scene, existing inverse rendering works either completely ignore 
+            the indirect illumination or model it by coarse approximations, leading to sub-optimal 
+            illumination, geometry, and material prediction of the scene.
+          </p>
+          <p>            
+            In this work, we propose a physics-based illumination model that explicitly traces the incoming indirect lights at each surface point based on interreflection, followed by estimating each identified indirect light through an efficient neural network.
+            Furthermore, we utilize the Leibniz's integral rule to resolve non-differentiability in the proposed illumination model caused by one type of environment light -- the tangent lights. 
+            As a result, the proposed interreflection-aware illumination model can be learned end-to-end together with geometry and materials estimation.
+            As a side product, our physics-based inverse rendering model also facilitates flexible and realistic material editing as well as relighting.
+            Extensive experiments on both synthetic and real-world datasets demonstrate that the proposed method performs favorably against existing inverse rendering methods on novel view synthesis and inverse rendering.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/THcYvkiiumM?rel=0&amp;showinfo=0"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
 </section>
 
 
-<section class="hero is-light is-small">
+<!-- <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div id="results-carousel" class="carousel results-carousel">
         <div class="item item-steve">
           <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/steve.mp4"
+            <source src="./video/air/albedo.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -247,171 +244,341 @@
       </div>
     </div>
   </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
-
+</section> -->
 
 <section class="section">
   <div class="container is-max-desktop">
 
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
+    <h2 class="title is-3">Inverse Rendering</h2>
+    <div class="content has-text-justified">
+    <p>Our method predicts consistent roughness and realistic albedo by explicitly tracing and 
+      estimating indirect lights based on occlusion and reflectance. The well-trained SDF MLP can also
+      predict reasonable normal maps. Given estimated albedo, roughness, and geometry, we can render images 
+      in arbitrary views with a rendering equation.
+    </p></div>
+    
+    <div class="columns">
+      <!--/ hot. -->
+      <div class="column is-one-quarter">
         <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/dollyzoom-stacked.mp4"
+          <h3 class="title is-4">Hotdog</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/hot/video_rgb.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/hot/normals.mp4"
+                    type="video/mp4">
+          </video>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/hot/albedo.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/hot/roughness.mp4"
                     type="video/mp4">
           </video>
         </div>
       </div>
-      <!--/ Visual Effects. -->
+      <!--/ hot. -->
 
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
+      <!-- air. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Air Balloons</h3>
 
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="https://homes.cs.washington.edu/~kpar/nerfies/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="https://homes.cs.washington.edu/~kpar/nerfies/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="https://homes.cs.washington.edu/~kpar/nerfies/videos/replay.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/air/video_rgb.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/air/normals.mp4"
+                    type="video/mp4">
+          </video>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/air/albedo.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/air/roughness.mp4"
                     type="video/mp4">
           </video>
         </div>
-        <!--/ Re-rendering. -->
-
       </div>
+      <!--/ air. -->
+
+      <!-- cha. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Chair</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/cha/video_rgb.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/cha/normals.mp4"
+                    type="video/mp4">
+          </video>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/cha/albedo.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/cha/roughness.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ cha. -->
+
+      <!-- jug. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Jugs</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/jug/video_rgb.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/jug/normals.mp4"
+                    type="video/mp4">
+          </video>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/jug/albedo.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/jug/roughness.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ jug. -->
     </div>
-    <!--/ Animation. -->
 
 
+    <h2 class="title is-3">Relighting</h2>
+    <div class="content has-text-justified">
+      <p>We can relight scenes by replacing the environment with Spherical Gaussians (SGs) illumination.
+    </p></div>
+    
+
+    <div class="columns">
+      <!--/ hot. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Hotdog</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/hot/video_rgb_env12.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/hot/video_rgb_env6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ hot. -->
+
+      <!-- air. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Air Balloons</h3>
+
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/air/video_rgb_env12.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/air/video_rgb_env6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ air. -->
+
+      <!-- cha. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Chair</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/cha/video_rgb_env12.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/cha/video_rgb_env6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ cha. -->
+
+      <!-- jug. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Jugs</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/jug/video_rgb_env12.mp4"
+                    type="video/mp4">
+          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
+            <source src="./video/jug/video_rgb_env6.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ jug. -->
+    </div>
+
+
+    <h2 class="title is-3">Editing</h2>
+
+    <h3 class="title is-4">Albedo (Base Color)</h3>
+    <div class="content has-text-justified">
+      <p>We can edit the estimated albedo and re-render the objects. Some surface is not fully replaced 
+        like air balloons and jugs because we manually set the threshold and replaced the albedo.
+    </p></div>
+    <div class="columns">
+      <!--/ hot. -->
+      <div class="column is-half-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Hotdog</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/blue-hotdog.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ hot. -->
+
+      <!-- air. -->
+      <div class="column is-half-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Air Balloons</h3>
+
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/air-hot.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ air. -->
+
+      <!-- cha. -->
+      <div class="column is-half-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Chair</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/green_cha.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ cha. -->
+
+      <!-- jug. -->
+      <div class="column is-half-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Jugs</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/blue_jug.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ jug. -->
+    </div>
+
+    <h3 class="title is-4">Mirror-Like Surface</h3>
+    <div class="content has-text-justified">
+      <p>We can also edit the Fresnel coefficient to figure out what scenes look like if they have mirror surfaces.
+    </p></div>
+    <div class="columns">
+      <!--/ hot. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Hotdog</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/mirror-hot.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ hot. -->
+
+      <!-- air. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Air Balloons</h3>
+
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/mirror-air.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ air. -->
+
+      <!-- cha. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Chair</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/mirror-cha.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ cha. -->
+
+      <!-- jug. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Jugs</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/mirror_jug.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ jug. -->
+    </div>
+
+
+    <h3 class="title is-4">Roughness</h3>
+    <div class="content has-text-justified">
+      <p>We gradually decrease the roughness to visualize the change from a matte surface to a smooth one.
+        We choose air balloons here since the visual effect is more obvious under human perception.
+    </p></div>
+    <div class="columns">
+      <!--/ rough. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Rough</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/air_rough.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ rough. -->
+
+      <!-- mid. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Original</h3>
+
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/air_mid.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ mid. -->
+
+      <!-- smooth. -->
+      <div class="column is-one-quarter">
+        <div class="content">
+          <h3 class="title is-4">Smooth</h3>
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/edit/air_smooth.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <!--/ smooth. -->
+
+    </div>
     <!-- Concurrent Work. -->
-    <div class="columns is-centered">
+    <!-- <div class="columns is-centered">
       <div class="column is-full-width">
         <h2 class="title is-3">Related Links</h2>
 
@@ -434,7 +601,7 @@
           </p>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--/ Concurrent Work. -->
 
   </div>
@@ -444,11 +611,11 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <pre><code>@article{deng2022dip,
+  author    = {Deng, Youming and Li, Xueting and Liu, Sifei and Yang, Ming-Hsuan},
+  title     = {DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering},
+  journal   = {arXiv},
+  year      = {2022},
 }</code></pre>
   </div>
 </section>
@@ -456,7 +623,7 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
+    <!-- <div class="content has-text-centered">
       <a class="icon-link"
          href="https://homes.cs.washington.edu/~kpar/nerfies/videos/nerfies_paper.pdf">
         <i class="fas fa-file-pdf"></i>
@@ -464,7 +631,7 @@
       <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
         <i class="fab fa-github"></i>
       </a>
-    </div>
+    </div> -->
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">

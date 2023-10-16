@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering.">
+        content="Physics-based Indirect Illumination for Inverse Rendering">
   <meta name="keywords" content="DIP, Differentiable Interreflection-aware Physics-based Inverse Rendering, Inverse Rendering">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering.</title>
@@ -45,7 +45,7 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering</h1>
+          <h1 class="title is-1 publication-title">Physics-based Indirect Illumination for Inverse Rendering</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
               <a href="https://denghilbert.github.io">Youming Deng</a><sup>1</sup>,</span>
@@ -60,7 +60,7 @@
           </div>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Wuhan University,</span>
+            <span class="author-block"><sup>1</sup>Cornell University,</span>
             <span class="author-block"><sup>2</sup>NVIDIA Research,</span>
             <span class="author-block"><sup>3</sup>UC Merced,</span>
             <span class="author-block"><sup>4</sup>Google Research</span>
@@ -152,18 +152,9 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present a physics-based inverse rendering method that learns the illumination, geometry, 
-            and materials of a scene from posed multi-view RGB images. 
-            To model the illumination of a scene, existing inverse rendering works either completely ignore 
-            the indirect illumination or model it by coarse approximations, leading to sub-optimal 
-            illumination, geometry, and material prediction of the scene.
+            We present a physics-based inverse rendering method that learns the illumination, geometry, and materials of a scene from posed multi-view RGB images. To model the illumination of a scene, existing inverse rendering works either completely ignore the indirect illumination or model it by coarse approximations, leading to sub-optimal illumination, geometry, and material prediction of the scene. 
           </p>
-          <p>            
-            In this work, we propose a physics-based illumination model that explicitly traces the incoming indirect lights at each surface point based on interreflection, followed by estimating each identified indirect light through an efficient neural network.
-            Furthermore, we utilize the Leibniz's integral rule to resolve non-differentiability in the proposed illumination model caused by one type of environment light -- the tangent lights. 
-            As a result, the proposed interreflection-aware illumination model can be learned end-to-end together with geometry and materials estimation.
-            As a side product, our physics-based inverse rendering model also facilitates flexible and realistic material editing as well as relighting.
-            Extensive experiments on both synthetic and real-world datasets demonstrate that the proposed method performs favorably against existing inverse rendering methods on novel view synthesis and inverse rendering.
+          <p>In this work, we propose a physics-based illumination model that first locates surface points through an efficient refined sphere tracing algorithm, then explicitly traces the incoming indirect lights at each surface point based on reflection. Then, we estimate each identified indirect light through an efficient neural network. Moreover, we utilize the Leibniz's integral rule to resolve non-differentiability in the proposed illumination model caused by boundary lights inspired by differentiable irradiance in computer graphics. As a result, the proposed differentiable illumination model can be learned end-to-end together with geometry and materials estimation. As a side product, our physics-based inverse rendering model also facilitates flexible and realistic material editing as well as relighting. Extensive experiments on synthetic and real-world datasets demonstrate that the proposed method performs favorably against existing inverse rendering methods on novel view synthesis and inverse rendering. 
           </p>
         </div>
       </div>

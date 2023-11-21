@@ -1,9 +1,0 @@
-openai
-Levenshtein
-requests
-tqdm
-feedparser
-retry
-ruff
-pre-commit
-slack_sdk

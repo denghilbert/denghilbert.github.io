@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="description"
         content="Physics-based Indirect Illumination for Inverse Rendering">
-  <meta name="keywords" content="DIP, Differentiable Interreflection-aware Physics-based Inverse Rendering, Inverse Rendering">
+  <meta name="keywords" content="Physics-based Indirect Illumination for Inverse Rendering, Inverse Rendering">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering.</title>
+  <title>Physics-based Indirect Illumination for Inverse Rendering.</title>
 
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KVBEP2XX2S"></script>
@@ -150,25 +150,10 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present a physics-based inverse rendering method that learns the illumination, geometry, and materials of a scene from posed multi-view RGB images. To model the illumination of a scene, existing inverse rendering works either completely ignore the indirect illumination or model it by coarse approximations, leading to sub-optimal illumination, geometry, and material prediction of the scene. 
-          </p>
-          <p>In this work, we propose a physics-based illumination model that first locates surface points through an efficient refined sphere tracing algorithm, then explicitly traces the incoming indirect lights at each surface point based on reflection. Then, we estimate each identified indirect light through an efficient neural network. Moreover, we utilize the Leibniz's integral rule to resolve non-differentiability in the proposed illumination model caused by boundary lights inspired by differentiable irradiance in computer graphics. As a result, the proposed differentiable illumination model can be learned end-to-end together with geometry and materials estimation. As a side product, our physics-based inverse rendering model also facilitates flexible and realistic material editing as well as relighting. Extensive experiments on synthetic and real-world datasets demonstrate that the proposed method performs favorably against existing inverse rendering methods on novel view synthesis and inverse rendering. 
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
     <!-- Paper video. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
+        <h2 class="title is-3">Overview</h2>
         <div class="publication-video">
           <iframe src="https://www.youtube.com/embed/THcYvkiiumM?rel=0&amp;showinfo=0"
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -176,6 +161,20 @@
       </div>
     </div>
     <!--/ Paper video. -->
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>We present a physics-based inverse rendering method that learns the illumination, geometry, and materials of a scene from posed multi-view RGB images. To model the illumination of a scene, existing inverse rendering works either completely ignore the indirect illumination or model it by coarse approximations, leading to sub-optimal illumination, geometry, and material prediction of the scene. 
+          </p>
+          <p>In this work, we propose a physics-based illumination model that first locates surface points through an efficient refined sphere tracing algorithm, then explicitly traces the incoming indirect lights at each surface point based on reflection. Then, we estimate each identified indirect light through an efficient neural network. Moreover, we utilize the Leibniz's integral rule to resolve non-differentiability in the proposed illumination model caused by boundary lights inspired by differentiable irradiance in computer graphics. As a result, the proposed differentiable illumination model can be learned end-to-end together with geometry and materials estimation. As a side product, our physics-based inverse rendering model also facilitates flexible and realistic material editing as well as relighting. Extensive experiments on synthetic and real-world datasets demonstrate that the proposed method performs favorably against existing inverse rendering methods on novel view synthesis and inverse rendering.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
   </div>
 </section>
 
@@ -253,20 +252,10 @@
       <div class="column is-one-quarter">
         <div class="content">
           <h3 class="title is-4">Hotdog</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/hot/video_rgb.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/merge_hotdog.mp4"
                     type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/hot/normals.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/hot/albedo.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/hot/roughness.mp4"
-                    type="video/mp4">
-          </video>
+          </video>        
         </div>
       </div>
       <!--/ hot. -->
@@ -276,18 +265,8 @@
         <div class="content">
           <h3 class="title is-4">Air Balloons</h3>
 
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/air/video_rgb.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/air/normals.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/air/albedo.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/air/roughness.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/merge_air.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -298,18 +277,8 @@
       <div class="column is-one-quarter">
         <div class="content">
           <h3 class="title is-4">Chair</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/cha/video_rgb.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/cha/normals.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/cha/albedo.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/cha/roughness.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/merge_chair.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -320,18 +289,8 @@
       <div class="column is-one-quarter">
         <div class="content">
           <h3 class="title is-4">Jugs</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/jug/video_rgb.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/jug/normals.mp4"
-                    type="video/mp4">
-          </video>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/jug/albedo.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/jug/roughness.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/merge_jug.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -351,11 +310,8 @@
       <div class="column is-one-quarter">
         <div class="content">
           <h3 class="title is-4">Hotdog</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/hot/video_rgb_env12.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/hot/video_rgb_env6.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/relit_hot.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -367,11 +323,8 @@
         <div class="content">
           <h3 class="title is-4">Air Balloons</h3>
 
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/air/video_rgb_env12.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/air/video_rgb_env6.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/relit_air.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -382,11 +335,8 @@
       <div class="column is-one-quarter">
         <div class="content">
           <h3 class="title is-4">Chair</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/cha/video_rgb_env12.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/cha/video_rgb_env6.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/relit_cha.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -397,11 +347,8 @@
       <div class="column is-one-quarter">
         <div class="content">
           <h3 class="title is-4">Jugs</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/jug/video_rgb_env12.mp4"
-                    type="video/mp4">
-          </video><video id="dollyzoom" autoplay controls muted loop playsinline width="50%">
-            <source src="./video/jug/video_rgb_env6.mp4"
+          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
+            <source src="./video/relit_jug.mp4"
                     type="video/mp4">
           </video>
         </div>
@@ -421,51 +368,12 @@
       <!--/ hot. -->
       <div class="column is-half-one-quarter">
         <div class="content">
-          <h3 class="title is-4">Hotdog</h3>
           <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/blue-hotdog.mp4"
+            <source src="./video/edit_albedo.mp4"
                     type="video/mp4">
           </video>
         </div>
       </div>
-      <!--/ hot. -->
-
-      <!-- air. -->
-      <div class="column is-half-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Air Balloons</h3>
-
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/air-hot.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ air. -->
-
-      <!-- cha. -->
-      <div class="column is-half-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Chair</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/green_cha.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ cha. -->
-
-      <!-- jug. -->
-      <div class="column is-half-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Jugs</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/blue_jug.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ jug. -->
     </div>
 
     <h3 class="title is-4">Mirror-Like Surface</h3>
@@ -474,53 +382,14 @@
     </p></div>
     <div class="columns">
       <!--/ hot. -->
-      <div class="column is-one-quarter">
+      <div class="column is-half-one-quarter">
         <div class="content">
-          <h3 class="title is-4">Hotdog</h3>
           <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/mirror-hot.mp4"
+            <source src="./video/edit_mirror.mp4"
                     type="video/mp4">
           </video>
         </div>
       </div>
-      <!--/ hot. -->
-
-      <!-- air. -->
-      <div class="column is-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Air Balloons</h3>
-
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/mirror-air.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ air. -->
-
-      <!-- cha. -->
-      <div class="column is-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Chair</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/mirror-cha.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ cha. -->
-
-      <!-- jug. -->
-      <div class="column is-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Jugs</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/mirror_jug.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ jug. -->
     </div>
 
 
@@ -530,43 +399,15 @@
         We choose air balloons here since the visual effect is more obvious under human perception.
     </p></div>
     <div class="columns">
-      <!--/ rough. -->
-      <div class="column is-one-quarter">
+      <!--/ hot. -->
+      <div class="column is-half-one-quarter">
         <div class="content">
-          <h3 class="title is-4">Rough</h3>
           <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/air_rough.mp4"
+            <source src="./video/edit_roughness.mp4"
                     type="video/mp4">
           </video>
         </div>
       </div>
-      <!--/ rough. -->
-
-      <!-- mid. -->
-      <div class="column is-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Original</h3>
-
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/air_mid.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ mid. -->
-
-      <!-- smooth. -->
-      <div class="column is-one-quarter">
-        <div class="content">
-          <h3 class="title is-4">Smooth</h3>
-          <video id="dollyzoom" autoplay controls muted loop playsinline width="100%">
-            <source src="./video/edit/air_smooth.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ smooth. -->
-
     </div>
     <!-- Concurrent Work. -->
     <!-- <div class="columns is-centered">
@@ -602,11 +443,11 @@
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{deng2022dip,
+    <pre><code>@inproceedings{deng2024dip,
   author    = {Deng, Youming and Li, Xueting and Liu, Sifei and Yang, Ming-Hsuan},
-  title     = {DIP: Differentiable Interreflection-aware Physics-based Inverse Rendering},
-  journal   = {arXiv},
-  year      = {2022},
+  title     = {Physics-based Indirect Illumination for Inverse Rendering},
+  journal   = {3DV},
+  year      = {2024},
 }</code></pre>
   </div>
 </section>

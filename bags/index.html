@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Bundle-Adjusting Gaussian Splatting</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="Bundle-Adjusting Gaussian Splatting" />
+    <meta property="og:description" content="We present Grendel, a distributed training system, to partition 3D Gaussian Splatting (3D GS) parameters and parallelize its
+        computation across multiple GPUs." />
+    <!--<meta property="og:url" content="https://daohanlu.github.io/scaling-up-3dgs/" />
+    <meta property="og:image" content="https://daohanlu.github.io/scaling-up-3dgs/static/preview.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:description" content="We present Grendel, a distributed training system, to partition 3D Gaussian Splatting (3D GS) parameters and parallelize its
+        computation across multiple GPUs." />
+    <meta name="twitter:url" content="https://daohanlu.github.io/scaling-up-3dgs/" />
+    <meta name="twitter:image" content="https://daohanlu.github.io/scaling-up-3dgs/static/preview.png" />-->
+    <script src="template.v2.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+    <script src="https://rawgit.com/nstrayer/slid3r/master/dist/slid3r.js"></script>
+    <script src="cross_fade.js"></script>
+    <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.35.2/gradio.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="favicon/png" href="favicon.png">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css" integrity="sha384-wcIxkf4k558AjM3Yz3BBFQUbk/zgIYC2R0QpeeYb+TwlBVMrlgLqwRjRtGZiK7ww" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js" integrity="sha384-hIoBPJpTUs74ddyc4bFZSM1TVlQDA60VBbJS0oA934VSz82sBx1X7kSx2ATBDIyd" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous"
+            onload="renderMathInElement(document.body);"></script>
+</head>
+<body>
+<div class="header-container" id="top">
+    <!--<div class="header-image">
+        <img src="static/cover-art.png" height="640" width="640" alt="Cover Image" class="teaser-image">
+    </div>
+    <div class="header-content">-->
+        <h1>Bundle-Adjusting Gaussian Splatting</h1>
+        <div class="button-container">
+            <a href="" class="button">Paper</a>
+            <a href="https://github.com/denghilbert/Bundle-Adjusting-Gaussian-Splatting" class="button">Code</a>
+            <a href="" class="button">Videos</a>
+        </div>
+    </div>
+</div>
+<d-article>
+    <d-contents>
+        <nav>
+            <h4>Contents</h4>
+            <div><a href="#">Top</a></div>
+            <div><a href="#Showcase">Showcase</a></div>
+            <div><a href="#Method">Method</a></div>
+            <div><a href="#Results">More Visual Results</a></div>
+            <div><a href="#real">Real World Captures</a></div>
+        </nav>
+    </d-contents>
+    <div class="byline">
+        <div class="byline-container">
+            <div class="byline-column">
+                <h3>Authors</h3>
+                <p><a href="https://denghilbert.github.io/" class="author-link">Youming Deng* ‡<sup>1</sup></a></p>
+                <p><a href="https://geometry.stanford.edu/member/guibas/" class="author-link">Leonidas Guibas ‡<sup>3</sup></a></p>
+                <p><a href="https://www.pauldebevec.com/" class="author-link">Paul Debevec ‡<sup>2</sup></a></p>
+                <p><sup>* Denotes Equal Contribution</p>
+            </div>
+            <div class="byline-column">
+                <h3 style="visibility: hidden">Authors</h3>
+                <p><a href="https://www.cs.cornell.edu/~wenqixian/" class="author-link">Wenqi Xian* ‡<sup>2</sup></a></p>
+                <p><a href="https://stanford.edu/~gordonwz/" class="author-link">Gordon Wetzstein ‡<sup>3</sup></a></p>
+            </div>
+            <div class="byline-column">
+                <h3 style="visibility: hidden">Authors</h3>
+                <p><a href="https://www.guandaoyang.com/" class="author-link">Guandao Yang ‡<sup>3</sup></a></p>
+                <p><a href="https://www.cs.cornell.edu/~srm/" class="author-link">Steve Marschner ‡<sup>1</sup></a></p>
+            </div>
+        </div>
+        <div class="byline-container">
+            <div class="byline-column">
+                <h3>Affiliations</h3>
+                <p><a href="https://www.cs.cornell.edu/" class="affiliation-link">Cornell University ‡<sup>1</sup></a></p>
+            </div>
+            <div class="byline-column">
+                <h3 style="visibility: hidden">Affiliations</h3>
+                <p><a href="https://www.eyelinestudios.com/" class="affiliation-link">Netflix Eyeline Studios ‡<sup>2</sup></a></p>
+            </div>
+            <div class="byline-column">
+                <h3 style="visibility: hidden">Affiliations</h3>
+                <p><a href="https://www.stanford.edu/" class="affiliation-link">Stanford University ‡<sup>3</sup></a></p>
+            </div>
+        </div>
+        <!--<div class="byline-container">
+            <div class="byline-column">
+                <h3>Date</h3>
+                <p>06/25/2024</p>
+            </div>
+        </div>-->
+    </div>
+    <p>
+        We introduce Bundle-Adjusting Gaussian Splatting, a differentiable rasterization pipeline that optimizes camera extrinsics, intrinsics, lens distortion, and scene representations using 3D Gaussians. Our system demonstrates significant improvements in high-quality Gaussian splatting with uncalibrated cameras and shows promising results in the reconstruction of challenging noisy poses.
+    </p>
+    <section id="Showcase">
+        <h2>Showcase</h2>
+        <!--<h3>MegaNeRF Rubble (4K) <d-cite key="meganerf"></d-cite></h3>-->
+        <h3>Reconstruction from Fisheye Images (720p)</h3>
+        <p style="text-align: center">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/showcase.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+                Reconstruction of cube scene with Vanilla-GS and our method. After the training, our method can easily undistort images from fisheye views to perspective ones.
+            </figcaption>
+        </p>
+    </section>
+    <section id="Method">
+        <h2>Method</h2>
+        <d-figure>
+            <figure>
+                <div style="display: flex; justify-content: center;">
+                    <img src="./images/method_illustration.jpg" style="display: block; margin-left: auto; margin-right: auto; width: 100%;" alt="density interpolation">
+                </div>
+                <figcaption>
+                    Overview of our method. Compared with a fully explicit distortion vector field in the upper row, our hybrid method preserves the computational efficiency from explicit control points. At the same time, the regularization from invertible neural field balances the trade-off between expressiveness and smoothness on distortion field. For better visualization, we scale up the distortion flow of grid by 50 and our method by 10.
+                </figcaption>
+            </figure>
+        </d-figure>
+    </section>
+    <section id="Results">
+        <h2>More Visual Results</h2>
+        <h3>Comparisons with CamP<d-cite key="camp"></d-cite></h3>
+        <p>
+            Our camera gradient estimator can accurately recover the camera parameters of a perspective camera model. We compare our methods with CamP implemented on ZipNeRF.
+        </p>
+
+        <!-- First switcher group -->
+        <div class="video-switcher switcher-1">
+            <button onclick="showVideo('lego', 'switcher-1')" class="tab-button switcher-1 active">Lego</button>
+            <button onclick="showVideo('hotdog', 'switcher-1')" class="tab-button switcher-1">Hotdog</button>
+            <button onclick="showVideo('chair', 'switcher-1')" class="tab-button switcher-1">Chair</button>
+        </div>
+
+        <div id="lego-switcher-1" class="video-container switcher-1" style="display: block; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/lego.mp4" type="video/mp4">
+            </video>
+            <figcaption style="text-align: left;">
+                Left: fixed view reconstruction process. Right: camera optimization. The pink cameras are the GT while the blue represents optimizing ones.
+            </figcaption>
+        </div>
+
+        <div id="hotdog-switcher-1" class="video-container switcher-1" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/hotdog.mp4" type="video/mp4">
+            </video>
+            <figcaption style="text-align: left;">
+                Left: fixed view reconstruction process. Right: camera optimization. The pink cameras are the GT while the blue represents optimizing ones.
+            </figcaption>
+        </div>
+
+        <div id="chair-switcher-1" class="video-container switcher-1" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/chair.mp4" type="video/mp4">
+            </video>
+            <figcaption style="text-align: left;">
+                Left: fixed view reconstruction process. Right: camera optimization. The pink cameras are the GT while the blue represents optimizing ones.
+            </figcaption>
+        </div>
+
+        <p style="text-align: center">
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/camp_pose.mp4" type="video/mp4">
+            </video>
+            <figcaption style="text-align: center;">
+                (a) CamP
+            </figcaption>
+            <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/ours_pose.mp4" type="video/mp4">
+            </video>
+            <figcaption style="text-align: center;">
+                (b) Ours
+            </figcaption>
+        </p>
+        <h3>Reconstruction from Distorted Images</h3>
+        <p>
+            Rather than undistorting images during preprocessing, we directly optimize Gaussian splatting from uncalibrated fisheye photos, simultaneously accounting for camera distortion while optimizing camera parameters and 3D scenes together.
+        </p>
+        <!-- Second switcher group -->
+        <div class="video-switcher switcher-2">
+            <button onclick="showVideo('cube', 'switcher-2')" class="tab-button switcher-2 active">Cube</button>
+            <button onclick="showVideo('flower', 'switcher-2')" class="tab-button switcher-2">Flowers</button>
+            <button onclick="showVideo('globe', 'switcher-2')" class="tab-button switcher-2">Globe</button>
+            <button onclick="showVideo('heart', 'switcher-2')" class="tab-button switcher-2">Heart</button>
+            <button onclick="showVideo('rock', 'switcher-2')" class="tab-button switcher-2">Rock</button>
+        </div>
+
+        <div id="cube-switcher-2" class="video-container switcher-2" style="display: block; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/cube.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="flower-switcher-2" class="video-container switcher-2" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/flowers.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="globe-switcher-2" class="video-container switcher-2" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/globe.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="heart-switcher-2" class="video-container switcher-2" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/heart.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="rock-switcher-2" class="video-container switcher-2" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/rock.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <script>
+        function showVideo(videoId, switcherClass) {
+            // Hide all videos in the specified switcher
+            var videos = document.getElementsByClassName('video-container ' + switcherClass);
+            for (var i = 0; i < videos.length; i++) {
+                videos[i].style.display = 'none';
+                // Pause and reset all videos
+                var videoElement = videos[i].getElementsByTagName('video')[0];
+                videoElement.pause();
+                videoElement.currentTime = 0;
+            }
+            // Show the selected video
+            var selectedVideoContainer = document.getElementById(videoId + '-' + switcherClass);
+            selectedVideoContainer.style.display = 'block';
+            // Play the selected video
+            var selectedVideo = selectedVideoContainer.getElementsByTagName('video')[0];
+            selectedVideo.play();
+
+            // Remove active class from all buttons in the specified switcher
+            var buttons = document.getElementsByClassName('tab-button ' + switcherClass);
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+            // Add active class to the clicked button
+            document.querySelector(`.${switcherClass} .tab-button[onclick="showVideo('${videoId}', '${switcherClass}')"]`).classList.add('active');
+        }
+
+        // Show the first video by default for each switcher
+        showVideo('lego', 'switcher-1');
+        showVideo('cube', 'switcher-2');
+        showVideo('dog', 'switcher-3');
+        showVideo('my', 'switcher-3');
+        </script>
+
+    </section>
+    <section id="real">
+        <h2>Real World Captures</h2>
+        <h3>Recover Nosiy Poses from ARKit</h3>
+        <p>
+            We further test our method’s capability to perform novel view synthesis with noisy camera poses in real-world captures. Specifically, we create real-world photos captured using cell phone cameras and export poses estimated by <a href="https://github.com/jc211/NeRFCapture">ARKit</a> using solely visual-inertial odometers.
+        </p>
+
+    <!-- Third switcher group -->
+    <div class="video-switcher switcher-3">
+        <button onclick="showVideo('dog', 'switcher-3')" class="tab-button switcher-3 active">Dog</button>
+        <button onclick="showVideo('popcorn', 'switcher-3')" class="tab-button switcher-3">Popcorn</button>
+        <button onclick="showVideo('car', 'switcher-3')" class="tab-button switcher-3">Car</button>
+        <button onclick="showVideo('coffee', 'switcher-3')" class="tab-button switcher-3">Coffee</button>
+    </div>
+
+    <div id="dog-switcher-3" class="video-container switcher-3" style="display: block; text-align: center;">
+        <video id="dollyzoom1-dog" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/dog_connect.mp4" type="video/mp4">
+        </video>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <figcaption style="margin-right: 200px;">
+                (a) W/o optimizing poses
+            </figcaption>
+            <figcaption>
+                (b) With optimizing poses
+            </figcaption>
+        </div>
+    </div>
+
+    <div id="popcorn-switcher-3" class="video-container switcher-3" style="display: none; text-align: center;">
+        <video id="dollyzoom1-popcorn" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/popcorn_connect.mp4" type="video/mp4">
+        </video>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <figcaption style="margin-right: 200px;">
+                (a) W/o optimizing poses
+            </figcaption>
+            <figcaption>
+                (b) With optimizing poses
+            </figcaption>
+        </div>
+    </div>
+
+    <div id="car-switcher-3" class="video-container switcher-3" style="display: none; text-align: center;">
+        <video id="dollyzoom1-car" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/car_connect.mp4" type="video/mp4">
+        </video>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <figcaption style="margin-right: 200px;">
+                (a) W/o optimizing poses
+            </figcaption>
+            <figcaption>
+                (b) With optimizing poses
+            </figcaption>
+        </div>
+    </div>
+
+    <div id="coffee-switcher-3" class="video-container switcher-3" style="display: none; text-align: center;">
+        <video id="dollyzoom1-coffee" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+            <source src="./video/coffee_connect.mp4" type="video/mp4">
+        </video>
+        <div style="display: flex; justify-content: center; margin-top: 10px;">
+            <figcaption style="margin-right: 200px;">
+                (a) W/o optimizing poses
+            </figcaption>
+            <figcaption>
+                (b) With optimizing poses
+            </figcaption>
+        </div>
+    </div>
+
+        <h3>Reconstruction from 180-degree Insta360 Camera</h3>
+        <p>
+            We further tested our method on more challenging circular fisheye images captured by an Insta360 camera. As a baseline, we apply COLMAP to undistort images from our dataset. We then apply both vanilla 3DGS and our method.
+        </p>
+
+        <!-- Fourth switcher group -->
+        <div class="video-switcher switcher-4">
+            <button onclick="showVideo('my', 'switcher-4')" class="tab-button switcher-4 active">My Table</button>
+            <button onclick="showVideo('gene', 'switcher-4')" class="tab-button switcher-4">Friend's Room</button>
+        </div>
+
+        <div id="my-switcher-4" class="video-container switcher-4" style="display: block; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/my_table.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div id="gene-switcher-4" class="video-container switcher-4" style="display: none; text-align: center;">
+            <video autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
+                <source src="./video/gene_table.mp4" type="video/mp4">
+            </video>
+        </div>
+
+</d-article>
+<d-appendix>
+    <h3>BibTeX</h3>
+    <p class="bibtex">
+        @misc{deng2024bags,<br>
+        &nbsp;&nbsp;title={Bundle-Adjusting Gaussian Splatting},<br>
+        &nbsp;&nbsp;author={},<br>
+        &nbsp;&nbsp;year={2024},<br>
+        &nbsp;&nbsp;eprint={},<br>
+        &nbsp;&nbsp;archivePrefix={arXiv},<br>
+        &nbsp;&nbsp;primaryClass={cs.CV},<br>
+        &nbsp;&nbsp;url={},<br>
+        }
+    </p>
+
+    <p><a href="https://daohanlu.github.io/scaling-up-3dgs/" class="author-link">This template is borrowed from scaling-up-3dgs</a></p>
+
+    <d-footnote-list></d-footnote-list>
+    <d-citation-list></d-citation-list>
+</d-appendix>
+
+<d-footnote-list></d-footnote-list>
+<d-citation-list></d-citation-list>
+</d-appendix>
+
+<!-- bibliography will be inlined during Distill pipeline's pre-rendering -->
+<d-bibliography src="./bibliography.bib"></d-bibliography>
+
+<!-- <script type="text/bibliography">
+
+</script> -->
+<script src="contents_bar.js"></script>
+
+
+
+</body>
+</html>

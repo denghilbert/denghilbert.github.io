@@ -5,16 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="Bundle-Adjusting Gaussian Splatting" />
-    <meta property="og:description" content="We present Grendel, a distributed training system, to partition 3D Gaussian Splatting (3D GS) parameters and parallelize its
-        computation across multiple GPUs." />
-    <!--<meta property="og:url" content="https://daohanlu.github.io/scaling-up-3dgs/" />
-    <meta property="og:image" content="https://daohanlu.github.io/scaling-up-3dgs/static/preview.png" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:description" content="We present Grendel, a distributed training system, to partition 3D Gaussian Splatting (3D GS) parameters and parallelize its
-        computation across multiple GPUs." />
-    <meta name="twitter:url" content="https://daohanlu.github.io/scaling-up-3dgs/" />
-    <meta name="twitter:image" content="https://daohanlu.github.io/scaling-up-3dgs/static/preview.png" />-->
+    <meta property="og:description" content="we present a new framework that jointly optimizes camera poses and lens distortion parameters together with a 3D Gaussian Splatting representation." />
+    <meta property="og:url" content="https://denghilbert.github.io/bags/" />
+    <meta name="twitter:description" content="we present a new framework that jointly optimizes camera poses and lens distortion parameters together with a 3D Gaussian Splatting representation." />
+    <meta name="twitter:url" content="https://denghilbert.github.io/bags/" />
     <script src="template.v2.js"></script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://d3js.org/d3-collection.v1.min.js"></script>
@@ -96,11 +90,11 @@
         </div>-->
     </div>
     <p>
-        We introduce Bundle-Adjusting Gaussian Splatting, a differentiable rasterization pipeline that optimizes camera extrinsics, intrinsics, lens distortion, and scene representations using 3D Gaussians. Our system demonstrates significant improvements in high-quality Gaussian splatting with uncalibrated cameras and shows promising results in the reconstruction of challenging noisy poses.
+        We introduce Bundle-Adjusting Gaussian Splatting, a differentiable rasterization pipeline that optimizes camera extrinsics, intrinsics, lens distortion, and scene representations using 3D Gaussians<d-cite key="3dgs"></d-cite>. Our system demonstrates significant improvements in high-quality Gaussian splatting with uncalibrated cameras and shows promising results in the reconstruction of challenging noisy poses.
     </p>
     <section id="Showcase">
         <h2>Showcase</h2>
-        <!--<h3>MegaNeRF Rubble (4K) <d-cite key="meganerf"></d-cite></h3>-->
+
         <h3>Reconstruction from Fisheye Images (720p)</h3>
         <p style="text-align: center">
             <video id="dollyzoom" autoplay="" controls="" muted="" loop="" playsinline="" width="100%">
@@ -126,9 +120,9 @@
     </section>
     <section id="Results">
         <h2>More Visual Results</h2>
-        <h3>Comparisons with CamP<d-cite key="camp"></d-cite></h3>
+        <h3>Comparisons with CamP</h3>
         <p>
-            Our camera gradient estimator can accurately recover the camera parameters of a perspective camera model. We compare our methods with CamP implemented on ZipNeRF.
+            Our camera gradient estimator can accurately recover the camera parameters of a perspective camera model. We compare our methods with CamP<d-cite key="camp"></d-cite> implemented on ZipNeRF<d-cite key="barron2023zip"></d-cite>.
         </p>
 
         <!-- First switcher group -->
@@ -330,7 +324,7 @@
 
         <h3>Reconstruction from 180-degree Insta360 Camera</h3>
         <p>
-            We further tested our method on more challenging circular fisheye images captured by an Insta360 camera. As a baseline, we apply COLMAP to undistort images from our dataset. We then apply both vanilla 3DGS and our method.
+            We further tested our method on more challenging circular fisheye images captured by an Insta360 camera. As a baseline, we apply COLMAP<d-cite key="schoenberger2016sfm"></d-cite> to undistort images from our dataset. We then apply both vanilla 3DGS and our method.
         </p>
 
         <!-- Fourth switcher group -->
@@ -366,7 +360,6 @@
         }
     </p>
 
-    <p><a href="https://daohanlu.github.io/scaling-up-3dgs/" class="author-link">This template is borrowed from scaling-up-3dgs</a></p>
 
     <d-footnote-list></d-footnote-list>
     <d-citation-list></d-citation-list>
@@ -379,6 +372,7 @@
 <!-- bibliography will be inlined during Distill pipeline's pre-rendering -->
 <d-bibliography src="./bibliography.bib"></d-bibliography>
 
+<p><a href="https://daohanlu.github.io/scaling-up-3dgs/" class="author-link">This template is borrowed from scaling-up-3dgs</a></p>
 <!-- <script type="text/bibliography">
 
 </script> -->

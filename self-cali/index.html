@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="self-calibrating gs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>self-calibrating gs</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+  <script src="./static/js/video_comparison.js" defer></script>
+  <!-- <link rel="icon" -->
+  <!--   href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"> -->
+
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title">Self-Calibrating Gaussian Splatting for Large Field of View Reconstruction</h1>
+            <br>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://denghilbert.github.io/">Youming Deng<sup>*1</sup></a>,</span>
+                <span class="author-block">
+                  <a href="https://www.cs.cornell.edu/~wenqixian/">Wenqi Xian<sup>*2</sup></a>,
+                </span>
+                <span class="author-block">
+                  <a href="https://www.guandaoyang.com/">Guandao Yang<sup>3</sup></a>,</span>
+                <span class="author-block">
+                  <a href="https://profiles.stanford.edu/leonidas-guibas">Leonidas Guibas<sup>3</sup></a>,</span>
+                <span class="author-block">
+                  <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein<sup>3</sup></a>,</span>
+                <span class="author-block">
+                  <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner<sup>1</sup></a>,</span>
+                <span class="author-block">
+                  <a href="https://www.pauldebevec.com/">Paul Debevec<sup>2</sup></a>
+                </span>
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block is-size-5"><sup>1</sup>Cornell University</span>
+                <span class="author-block is-size-5"><sup>2</sup>NetFlix Eyeline Studio</span>
+                <span class="author-block is-size-5"><sup>3</sup>Stanford University</span>
+                  <br />
+                <span class="author-block is-size-5">* denotes equal contributions</span>
+              </div>
+            <br>
+            <div class="is-size-5 publication-venue">
+              arXiv 2024
+            </div>
+
+            <div class="is-size-5 publication-authors">
+<!--
+              <span class="author-block">
+                Anonymous Authors</span>
+-->
+            </div>
+
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <span class="link-block">
+                  <a href="https://arxiv.org/" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+<!--
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+-->
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark" title="Code">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code and data [coming soon]</span>
+                    </a>
+                </span>
+
+                <!--
+                <span class="link-block">
+                  <a class="external-link button is-normal is-rounded is-dark" title="Coming soon!" disabled>
+                    <span class="icon">
+                        <i class="far fa-images"></i>
+                    </span>
+                    <span>Data</span>
+                    </a>
+                  </span> -->
+    
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container is-max-desktop">
+        <video id="teaser" width="100%" playsinline controls autoplay loop muted>
+            <source src="./videos/capture_and_reconstruct.mp4" type="video/mp4" />
+        </video>
+<script>
+    document.getElementById('teaser').play();
+</script>
+    </div>
+  </section>
+    
+    
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <h2 class="title is-2">Abstract</h2>
+      <div class="content has-text-justified">
+          <p>
+              In this paper, we present a self-calibrating framework that jointly optimizes camera parameters, lens distortion and 3D Gaussian representations, enabling accurate and efficient scene reconstruction.  In particular, our technique enables high-quality scene reconstruction from Large field-of-view (FOV) imagery taken with wide-angle lenses, allowing the scene to be modeled from a smaller number of images.  
+              Our approach introduces a novel method for modeling complex lens distortions using a hybrid network that combines invertible residual networks with explicit grids. 
+              This design effectively regularizes the optimization process, achieving greater accuracy than conventional camera models. 
+              Additionally, we propose a cubemap-based resampling strategy to support large FOV images without sacrificing resolution or introducing distortion artifacts. 
+              Our method is compatible with the fast rasterization of Gaussian Splatting, adaptable to a wide variety of camera lens distortion, and demonstrates state-of-the-art performance on both synthetic and real-world datasets.
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Method. -->
+      <h2 class="title is-3">Method</h2>
+      <figure>
+          <img src="./project_page_img.jpg" alt="Description of the image">
+          <!-- <figcaption>Description of the image goes here</figcaption> -->
+      </figure>
+      <div class="content has-text-justified">
+          <p>
+            XXXX
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-4">FisheyeNeRF Dataset</h2>
+      <p>
+        Here we display side-by-side videos comparing our method to top-performing baselines across different captured scenes. <br><br>
+        Select a scene and a baseline method below:
+      </p>
+      <br>
+      <div class="tabs-widget">
+        <div class="tabs is-centered">
+          <ul class="is-marginless">
+            <li><a>cube</a></li>
+            <li><a>chairs</a></li>
+            <li><a>flowers</a></li>
+            <li><a>rock</a></li>
+          </ul>
+        </div>
+        <!-- <div class="content has-text-centered is-size-7-mobile"> -->
+        <!--   Interactive visualization. Hover or tap to move the split. -->
+        <!-- </div> -->
+        <div class="tabs-content">
+          <!-- Begin cube. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Vanilla-GS vs. Ours</a></li>
+                  <li><a>Fisheye-GS vs. Ours</a></li>
+                  <li><a>Ours Large FOV Perspective</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="Vanilla-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/cube_vanilla_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <div class="video-comparison" data-label="Fisheye-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/cube_fisheye-gs_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=100% loop playsinline muted autoplay
+                  src="./videos/fisheyenerf/cube_perspective.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End cube. -->
+          <!-- Begin chairs. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Vanilla-GS vs. Ours</a></li>
+                  <li><a>Fisheye-GS vs. Ours</a></li>
+                  <li><a>Ours Large FOV Perspective</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="Vanilla-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/chairs_vanilla_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <div class="video-comparison" data-label="Fisheye-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/chairs_fisheye-gs_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=100% loop playsinline muted autoplay
+                  src="./videos/fisheyenerf/chairs_perspective.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End chairs. -->
+          <!-- Begin flowers. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Vanilla-GS vs. Ours</a></li>
+                  <li><a>Fisheye-GS vs. Ours</a></li>
+                  <li><a>Ours Large FOV Perspective</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="Vanilla-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/flowers_vanilla_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <div class="video-comparison" data-label="Fisheye-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/flowers_fisheye-gs_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=100% loop playsinline muted autoplay
+                  src="./videos/fisheyenerf/flowers_perspective.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End flowers. -->
+          <!-- Begin rock. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Vanilla-GS vs. Ours</a></li>
+                  <li><a>Fisheye-GS vs. Ours</a></li>
+                  <li><a>Ours Large FOV Perspective</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="Vanilla-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/rock_vanilla_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <div class="video-comparison" data-label="Fisheye-GS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/fisheyenerf_side_by_side/rock_fisheye-gs_vs_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=100% loop playsinline muted autoplay
+                  src="./videos/fisheyenerf/rock_perspective.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End rock. -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-4">Captures in NetFlix Studio</h2>
+      <p>
+          We captured scenes in NetFlix Studio with wide-angle cameras.
+          <br />
+          The following compares our method with conventional pipeline (e.g., undistort images with SfM).
+      </p>
+      <br>
+      <div class="tabs-widget">
+        <div class="tabs is-centered">
+          <ul class="is-marginless">
+            <li><a>Garden</a></li>
+            <li><a>Room</a></li>
+            <li><a>Office</a></li>
+          </ul>
+        </div>
+        <!-- <div class="content has-text-centered is-size-7-mobile"> -->
+        <!--   Interactive visualization. Hover or tap to move the split. -->
+        <!-- </div> -->
+        <div class="tabs-content">
+          <!-- Begin Garden. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Conventional Pipeline vs. Ours</a></li>
+                  <li><a>Ours Fisheye Rendering</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="SfM+3DGS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/netflix_side_by_side/garden_conventional_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/netflix/garden.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End Garden. -->
+          <!-- Begin Room. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Conventional Pipeline vs. Ours</a></li>
+                  <li><a>Ours Fisheye Rendering</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="SfM+3DGS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/netflix_side_by_side/room_conventional_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/netflix/room_.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End Room. -->
+          <!-- Begin Office. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Conventional Pipeline vs. Ours</a></li>
+                  <li><a>Ours Fisheye Rendering</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="SfM+3DGS" data-label2="Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/netflix_side_by_side/office_conventional_ours.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=60% loop playsinline muted autoplay
+                  src="./videos/netflix/paul_office.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End Office. -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-4">180 Mitsuba Synthetic Dataset</h2>
+      <p>
+            We created an extremely challenging dataset with a 180-degree fisheye using Mitsuba.
+            <br />
+            The following compares our method with reconstruction from a set of regular FOV captures.
+            <br />
+            Additionally, we show the influence of failing to model the peripheral region during reconstruction with Fisheye-GS.
+      </p>
+      <br>
+      <div class="tabs-widget">
+        <div class="tabs is-centered">
+          <ul class="is-marginless">
+            <li><a>Room1</a></li>
+            <li><a>Room2</a></li>
+            <li><a>Kitchen</a></li>
+          </ul>
+        </div>
+        <!-- <div class="content has-text-centered is-size-7-mobile"> -->
+        <!--   Interactive visualization. Hover or tap to move the split. -->
+        <!-- </div> -->
+        <div class="tabs-content">
+          <!-- Begin Room1. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Regular FOV Reconstruction vs. Ours</a></li>
+                  <li><a>Ours 180-degree Rendering</a></li>
+                  <li><a>Fisheye-GS Rendering</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="100 FOV" data-label2="180 Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/mitsuba_side_by_side/hilbert_side_by_side.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/mitsuba/hilbert_180_fisheye_sorted_dis.mp4"></video>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/fisheye-gs-failure_case/room1_fail.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End Room1. -->
+          <!-- Begin Room2. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Regular FOV Reconstruction vs. Ours</a></li>
+                  <li><a>Ours 180-degree Rendering</a></li>
+                  <li><a>Fisheye-GS Rendering</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="100 FOV" data-label2="180 Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/mitsuba_side_by_side/living_side_by_side.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/mitsuba/living_180_fisheye.mp4"></video>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/fisheye-gs-failure_case/living.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End Room2. -->
+          <!-- Begin Kitchen. -->
+          <div>
+            <div class="tabs-widget">
+              <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                <ul class="is-marginless">
+                  <li><a>Regular FOV Reconstruction vs. Ours</a></li>
+                  <li><a>Ours 180-degree Rendering</a></li>
+                  <li><a>Fisheye-GS Rendering</a></li>
+                </ul>
+              </div>
+              <div class="tabs-content">
+                <div class="video-comparison" data-label="100 FOV" data-label2="180 Ours">
+                  <video class="video" width=100% loop playsinline muted
+                    src="./videos/mitsuba_side_by_side/kitchen_side_by_side.mp4"></video>
+                  <canvas></canvas>
+                </div>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/mitsuba/kitchen_180_fisheye_sorted_dis.mp4"></video>
+                <video class="video" width=70% loop playsinline muted autoplay
+                  src="./videos/fisheye-gs-failure_case/kitchen.mp4"></video>
+                <canvas></canvas> 
+              </div>
+            </div>
+          </div>
+          <!-- End Kitchen. -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+                This webpage is based on the project page for <a href="https://camp-nerf.github.io">CamP</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+      
+      
+</body>
+
+</html>

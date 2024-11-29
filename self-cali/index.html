@@ -119,7 +119,7 @@
                   </span> -->
     
               </div>
-
+              <p>Please use desktop or PC to view this page for sliding video comparisons.</p>
             </div>
           </div>
         </div>
@@ -141,7 +141,7 @@
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Abstract. -->
-      <h2 class="title is-2">Abstract</h2>
+      <h2 class="title is-3">Abstract</h2>
       <div class="content has-text-justified">
           <p>
               In this paper, we present a self-calibrating framework that jointly optimizes camera parameters, lens distortion and 3D Gaussian representations, enabling accurate and efficient scene reconstruction.  In particular, our technique enables high-quality scene reconstruction from Large field-of-view (FOV) imagery taken with wide-angle lenses, allowing the scene to be modeled from a smaller number of images.  
@@ -164,7 +164,11 @@
       </figure>
       <div class="content has-text-justified">
           <p>
-            XXXX
+            Conventional approaches require undistorting the image into perspective views compatible with 3DGS rasterization. 
+            As the field of view increases, pixel stretching becomes progressively severe, significantly compromising the quality of the reconstruction. 
+            In contrast, our cubemap resampling strategy maintains a consistent pixel density across the entire field of view. 
+            This approach, combined with our hybrid distortion field, makes use of the peripheral regions (the annular area outside the blue box) without severe distortion or pixel stretching. 
+            Moreover, our method can handle fields of view all the way up to 180°, as demonstrated by the green box, allowing for comprehensive and accurate reconstructions.
           </p>
       </div>
     </div>
@@ -172,10 +176,17 @@
 
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-4">FisheyeNeRF Dataset</h2>
+      <h2 class="title is-3">FisheyeNeRF Dataset</h2>
       <p>
-        Here we display side-by-side videos comparing our method to top-performing baselines across different captured scenes. <br><br>
-        Select a scene and a baseline method below:
+          We compare our method with Vanilla 3DGS and Fisheye-GS on the FisheyeNeRF dataset.
+          <br />
+          Without modeling lens distortion, Vanilla 3DGS fails to reconstruct properly, resulting in numerous floaters.
+          <br />
+          Fisheye-GS struggles in peripheral areas where distortions are more pronounced.
+          <br />
+          Our method produces better reconstructions, especially in highly distorted regions.
+          <br />
+          We also render the results in a perspective view with a large FOV after reconstruction.
       </p>
       <br>
       <div class="tabs-widget">
@@ -311,7 +322,7 @@
 
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-4">Captures in NetFlix Studio</h2>
+      <h2 class="title is-3">Captures in NetFlix Studio</h2>
       <p>
           We captured scenes in NetFlix Studio with wide-angle cameras.
           <br />
@@ -403,7 +414,7 @@
 
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-4">180 Mitsuba Synthetic Dataset</h2>
+      <h2 class="title is-3">180 Mitsuba Synthetic Dataset</h2>
       <p>
             We created an extremely challenging dataset with a 180-degree fisheye using Mitsuba.
             <br />

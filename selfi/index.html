@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://denghilbert.github.io/self-cali/ -->
+<html class="fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="description" content="Self-Calibrating Gaussian Splatting for Large Field of View Reconstruction, self-calibrating gs">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="3D Gaussian Splatting, Novel-View Synthesis, Feed-Forward NVS, Bundle Adjustment">
+  <title>Selfi: Self Improving Reconstruction Engine via 3D Geometric Feature Alignment</title>
+
+  <style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.3333333333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-both,:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}.svg-inline--fa .fa-primary{fill:var(--fa-primary-color,currentColor);opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa .fa-secondary{fill:var(--fa-secondary-color,currentColor);opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-primary{opacity:.4;opacity:var(--fa-secondary-opacity,.4)}.svg-inline--fa.fa-swap-opacity .fa-secondary{opacity:1;opacity:var(--fa-primary-opacity,1)}.svg-inline--fa mask .fa-primary,.svg-inline--fa mask .fa-secondary{fill:#000}.fad.fa-inverse{color:#fff}</style><link href="./assets/css" rel="stylesheet">
+
+<style>
+        .video-slider-container {
+            width: 900px; /* Adjust to fit two videos side-by-side */
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-slider-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .video-slide {
+            /* KEY CHANGE: Each slide takes up 50% of the container width */
+            flex: 0 0 100%; 
+            width: 100%;
+            height: 294; /* Example fixed height */
+            object-fit: contain;
+        }
+
+        /* Navigation Button Styles */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5); 
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 20px;
+            z-index: 10;
+        }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+    </style>
+
+  <link rel="stylesheet" href="./assets/bulma.min.css">
+  <link rel="stylesheet" href="./assets/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./assets/bulma-slider.min.css">
+  <link rel="stylesheet" href="./assets/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./assets/academicons.min.css">
+  <link rel="stylesheet" href="./assets/index.css">
+
+  <script src="./assets/jquery.min.js"></script>
+  <script defer="" src="./assets/fontawesome.all.min.js"></script>
+  <script src="./assets/bulma-carousel.min.js"></script>
+  <script src="./assets/bulma-slider.min.js"></script>
+  <script src="./assets/index.js"></script>
+  <script src="./assets/video_comparison.js" defer=""></script>
+  <!-- <link rel="icon" -->
+  <!--   href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>"> -->
+
+</head>
+
+<body>
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-2 publication-title">Selfi: Self Improving Reconstruction Engine <br>via 3D Geometric Feature Alignment</h1>
+            <br>
+            <!-- <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Anonymous Authors</span>
+            </div> -->
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="https://denghilbert.github.io/">Youming Deng<sup>1,2</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://pengsongyou.github.io/">Songyou Peng<sup>2</sup></a>,
+              </span>
+              <span class="author-block">
+                <a href="https://www.junyi42.com/">Junyi Zhang<sup>2,3</sup></a>,</span>
+              </span>
+              <span class="author-block">
+                <a href="https://kathrynheal.com/">Kathryn Heal<sup>2</sup></a>,</span>
+              <br />
+              <span class="author-block">
+                <a href="https://www.kevinkingo.com/">Tiancheng Sun<sup>2</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://scholar.google.com/citations?user=G6eENb8AAAAJ&hl=en">John Flynn<sup>2</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner<sup>1</sup></a>,</span>
+              <span class="author-block">
+                <a href="https://people.csail.mit.edu/lrchai/">Lucy Chai<sup>2</sup></a>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block is-size-5"><sup>1</sup>Cornell University</span>
+              <span class="author-block is-size-5"><sup>2</sup>Google</span>
+              <span class="author-block is-size-5"><sup>3</sup>UC Berkeley</span>
+            </div>
+          <br>
+          <!-- <div class="is-size-4 publication-venue">
+            ArXiv 2025
+          </div> -->
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+
+
+            <div class="column has-text-centered">
+              <p>Please use desktop or PC to view this page for sliding video comparisons.</p> <br>
+              <p>This page is still under construction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Method. -->
+      <h2 class="title is-3">Overview</h2>
+      <figure>
+          <img src="./assets/project_page_img.jpg" alt="Description of the image">
+          <!-- <figcaption>Description of the image goes here</figcaption> -->
+      </figure>
+      <div class="content has-text-justified">
+          <p>
+We leverage a 3D foundation model (e.g., VGGT) to learn geometrically aligned features that guide Gaussian primitive prediction and pose refinement via bundle adjustment, significantly improving final rendering quality.
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Method. -->
+      <h2 class="title is-3">Method</h2>
+      <figure>
+          <img src="./assets/method.png" alt="Description of the image">
+          <!-- <figcaption>Description of the image goes here</figcaption> -->
+      </figure>
+      <div class="content has-text-justified">
+          <p>
+Using a pretrained VGGT backbone, we align DPT adapter features by reprojecting query points via predicted depth and camera parameters, enforcing similarity between corresponding source and target locations.
+          </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Qualitative Comparisons</h2>
+      <p>
+          We compare our method with AnySplat and WorldMirror on both DL3DV and RealEstate10K.
+      </p>
+      <br>
+      <div class="tabs-widget">
+        <div class="tabs is-centered">
+          <ul class="is-marginless">
+            <li class="is-active"><a>restaurant</a></li>
+            <li><a>outdoor</a></li>
+            <li><a>tiger</a></li>
+            <li><a>market</a></li>
+            <li><a>warehouse</a></li>
+            <li><a>fence</a></li>
+            <li><a>playground</a></li>
+            <li><a>statue</a></li>
+            <li><a>store</a></li>
+            <li><a>toys</a></li>
+            <li><a>zoo</a></li>
+          </ul>
+        </div>
+        <!-- <div class="content has-text-centered is-size-7-mobile"> -->
+        <!--   Interactive visualization. Hover or tap to move the split. -->
+        <!-- </div> -->
+        <div class="tabs-content">
+		<!-- Begin eb4cf52988f805e6fce11d1b239fa9de32eb157364cff06ebac0aa50e0a46567 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/eb4cf52988f805e6fce11d1b239fa9de32eb157364cff06ebac0aa50e0a46567_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/eb4cf52988f805e6fce11d1b239fa9de32eb157364cff06ebac0aa50e0a46567_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End eb4cf52988f805e6fce11d1b239fa9de32eb157364cff06ebac0aa50e0a46567 -->
+
+		<!-- Begin 4ae797d07b6d1644c9db6919c8cc8c0d28d72be45108ac7a3abf8dc21b599d83 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/4ae797d07b6d1644c9db6919c8cc8c0d28d72be45108ac7a3abf8dc21b599d83_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/4ae797d07b6d1644c9db6919c8cc8c0d28d72be45108ac7a3abf8dc21b599d83_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End 4ae797d07b6d1644c9db6919c8cc8c0d28d72be45108ac7a3abf8dc21b599d83 -->
+
+		<!-- Begin 8b9fb9d9f10e8c64d5034be69809465753b8ba88ef12da82afd47d38ee789934 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/8b9fb9d9f10e8c64d5034be69809465753b8ba88ef12da82afd47d38ee789934_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/8b9fb9d9f10e8c64d5034be69809465753b8ba88ef12da82afd47d38ee789934_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End 8b9fb9d9f10e8c64d5034be69809465753b8ba88ef12da82afd47d38ee789934 -->
+
+		<!-- Begin 917e9c8985d353b0ee4c281f11fa84eb8550814562670cbb82cd0ec9c1194fe7 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/917e9c8985d353b0ee4c281f11fa84eb8550814562670cbb82cd0ec9c1194fe7_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/917e9c8985d353b0ee4c281f11fa84eb8550814562670cbb82cd0ec9c1194fe7_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End 917e9c8985d353b0ee4c281f11fa84eb8550814562670cbb82cd0ec9c1194fe7 -->
+
+		<!-- Begin 9cbc5548643ca9cfe797f871bac58bccd02f0510c49b7cb3697b38dfd780a508 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/9cbc5548643ca9cfe797f871bac58bccd02f0510c49b7cb3697b38dfd780a508_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/9cbc5548643ca9cfe797f871bac58bccd02f0510c49b7cb3697b38dfd780a508_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End 9cbc5548643ca9cfe797f871bac58bccd02f0510c49b7cb3697b38dfd780a508 -->
+
+		<!-- Begin af0d7039e64af3959210c235e59425896ac064f4e0f721c437bbd2cf1d8ea910 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/af0d7039e64af3959210c235e59425896ac064f4e0f721c437bbd2cf1d8ea910_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/af0d7039e64af3959210c235e59425896ac064f4e0f721c437bbd2cf1d8ea910_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End af0d7039e64af3959210c235e59425896ac064f4e0f721c437bbd2cf1d8ea910 -->
+
+		<!-- Begin b4f53094fd31dcc2de1c1d1fdfeffac5259e9bdf39d77b552ff948e4bdf1fd8e -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/b4f53094fd31dcc2de1c1d1fdfeffac5259e9bdf39d77b552ff948e4bdf1fd8e_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/b4f53094fd31dcc2de1c1d1fdfeffac5259e9bdf39d77b552ff948e4bdf1fd8e_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End b4f53094fd31dcc2de1c1d1fdfeffac5259e9bdf39d77b552ff948e4bdf1fd8e -->
+
+		<!-- Begin ceb252f5d4419510655cf9ed7afbf3e8e688825f798d80414c7715dc8ace153a -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/ceb252f5d4419510655cf9ed7afbf3e8e688825f798d80414c7715dc8ace153a_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/ceb252f5d4419510655cf9ed7afbf3e8e688825f798d80414c7715dc8ace153a_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End ceb252f5d4419510655cf9ed7afbf3e8e688825f798d80414c7715dc8ace153a -->
+
+		<!-- Begin e9360e7a89bee835dc847cf8796093e634b759ff582558788dcfe8326f6e8901 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/e9360e7a89bee835dc847cf8796093e634b759ff582558788dcfe8326f6e8901_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/e9360e7a89bee835dc847cf8796093e634b759ff582558788dcfe8326f6e8901_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End e9360e7a89bee835dc847cf8796093e634b759ff582558788dcfe8326f6e8901 -->
+
+		<!-- Begin 0a1b7c20a92c43c6b8954b1ac909fb2f0fa8b2997b80604bc8bbec80a1cb2da3 -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/0a1b7c20a92c43c6b8954b1ac909fb2f0fa8b2997b80604bc8bbec80a1cb2da3_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/0a1b7c20a92c43c6b8954b1ac909fb2f0fa8b2997b80604bc8bbec80a1cb2da3_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End 0a1b7c20a92c43c6b8954b1ac909fb2f0fa8b2997b80604bc8bbec80a1cb2da3 -->
+
+		<!-- Begin 5a27c00f525f5484b7aa0d0107051253bf7bb395bde0b3a4486ff8c52fb4965e -->
+		<div>
+		  <div class="tabs-widget">
+		    <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+		      <ul class="is-marginless">
+			<li class="is-active"><a>AnySplat vs Ours</a></li>
+			<li class=""><a>WorldMirror vs Ours</a></li>
+		      </ul>
+		    </div>
+		    <div class="tabs-content">
+		      <div class="video-comparison" data-label="AnySplat" data-label2="Ours" style="">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/5a27c00f525f5484b7aa0d0107051253bf7bb395bde0b3a4486ff8c52fb4965e_any_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		      <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" style="display: none;">
+			<video class="video" width="100%" loop="" playsinline="" muted="" src="./assets/videos/side_by_side_videos/5a27c00f525f5484b7aa0d0107051253bf7bb395bde0b3a4486ff8c52fb4965e_world_ours_sbs.mp4" style="height: 0px;"></video>
+			<canvas width="1036" height="294"></canvas>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<!-- End 5a27c00f525f5484b7aa0d0107051253bf7bb395bde0b3a4486ff8c52fb4965e -->
+        </div>
+      </div>
+
+        <!-- Outer Tabs (Scene Selector) -->
+        <div class="tabs-widget">
+            <div class="tabs is-centered">
+                <!-- Scene Tabs (1, 3-9, re-indexed to 1-8) -->
+                <ul class="is-marginless" id="scene-tabs">
+                    <li class="is-active" data-scene="1"><a>living room</a></li>
+                    <li data-scene="2"><a>study room</a></li>
+                    <li data-scene="3"><a>door</a></li>
+                    <li data-scene="4"><a>house</a></li>
+                    <li data-scene="5"><a>playing</a></li>
+                    <li data-scene="6"><a>kitchen</a></li>
+                    <li data-scene="7"><a>fireplace</a></li>
+                    <li data-scene="8"><a>stairs</a></li>
+                </ul>
+            </div>
+            
+            <!-- Tab Contents (Scene Content) - Static HTML blocks -->
+            <div class="tabs-content" id="scene-contents">
+                <!-- SCENE 1: restaurant (Active by default) -->
+                <div class="tab-content-item" data-scene="1" style="display: block;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/1_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/1_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 3: tiger (RE-INDEXED to SCENE 2, uses video 3) -->
+                <div class="tab-content-item" data-scene="2" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/3_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/3_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- SCENE 4: market (RE-INDEXED to SCENE 3, uses video 4) -->
+                <div class="tab-content-item" data-scene="3" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/4_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/4_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 5: warehouse (RE-INDEXED to SCENE 4, uses video 5) -->
+                <div class="tab-content-item" data-scene="4" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/5_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/5_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 6: fence (RE-INDEXED to SCENE 5, uses video 6) -->
+                <div class="tab-content-item" data-scene="5" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/6_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/6_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 7: playground (RE-INDEXED to SCENE 6, uses video 7) -->
+                <div class="tab-content-item" data-scene="6" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/7_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/7_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 8: statue (RE-INDEXED to SCENE 7, uses video 8) -->
+                <div class="tab-content-item" data-scene="7" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/8_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/8_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCENE 9: store (RE-INDEXED to SCENE 8, uses video 9) -->
+                <div class="tab-content-item" data-scene="8" style="display: none;">
+                    <div class="tabs-widget comparison-widget">
+                        <div class="tabs is-centered is-toggle is-toggle-rounded is-small">
+                            <ul class="is-marginless comparison-tabs">
+                                <li class="is-active" data-comparison="any"><a>AnySplat vs Ours</a></li>
+                                <li data-comparison="world"><a>WorldMirror vs Ours</a></li>
+                            </ul>
+                        </div>
+                        <div class="tabs-content comparison-contents">
+                            <div class="video-comparison" data-label="AnySplat" data-label2="Ours" data-comparison="any">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/9_any_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                            <div class="video-comparison" data-label="WorldMirror" data-label2="Ours" data-comparison="world" style="display: none;">
+                                <video class="video" width="100%" loop playsinline muted src="./assets/videos/sbs_re10k/9_world_vs_ours.mp4"></video>
+                                <canvas width="1036" height="294"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+  </section>
+
+
+<!--
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3">Real-world Captures</h2>
+      <p>
+still working on this
+      </p>
+      <br>
+  </section>
+-->
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Feature Matching Visualization</h2>
+    <p>
+	We sample points in the first frame and use our aligned features to find correspondences in the subsequent frames.
+    </p>
+    <br>
+<div class="video-slider-container">
+    <div class="video-slider-wrapper">
+        <video class="video-slide" src="./assets/videos/tracking/1_dot_vs_line_sbs.mp4" controls muted loop autoplay></video>
+        <video class="video-slide" src="./assets/videos/tracking/2_dot_vs_line_sbs.mp4" controls muted loop autoplay></video>
+        <video class="video-slide" src="./assets/videos/tracking/3_dot_vs_line_sbs.mp4" controls muted loop autoplay></video>
+        <video class="video-slide" src="./assets/videos/tracking/4_dot_vs_line_sbs.mp4" controls muted loop autoplay></video>
+        <video class="video-slide" src="./assets/videos/tracking/5_dot_vs_line_sbs.mp4" controls muted loop autoplay></video>
+    </div>
+    
+    <button class="nav-arrow prev-btn">&#10094;</button>
+    <button class="nav-arrow next-btn">&#10095;</button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const container = document.querySelector('.video-slider-container');
+        const wrapper = container.querySelector('.video-slider-wrapper');
+        const slides = container.querySelectorAll('.video-slide');
+        const prevBtn = container.querySelector('.prev-btn');
+        const nextBtn = container.querySelector('.next-btn');
+        
+        // Total slides = 5. Since we show 2 at once, we have 4 possible view positions (0, 1, 2, 3).
+        const totalSlides = slides.length; 
+        const maxSlideIndex = totalSlides - 1; 
+        let currentSlide = 0; // Starts showing videos 1 and 2
+
+        function updateSlider() {
+            // Move the wrapper by 50% (one slide width) for each step
+            const offset = currentSlide * -100; 
+            wrapper.style.transform = `translateX(${offset}%)`;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            // Stop at index 0
+            currentSlide = Math.max(0, currentSlide - 1);
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            // Stop at maxSlideIndex (which is 3)
+            currentSlide = Math.min(maxSlideIndex, currentSlide + 1);
+            updateSlider();
+        });
+
+        // Initialize the slider position
+        updateSlider();
+    });
+</script>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3">Pseudo-GT Generation</h2>
+    <p>
+      We compare two different methods for generating pseudo-GT for geometric feature alignment. Please check supp for explanations.
+    </p>
+    <br>
+
+    <div style="display: flex; justify-content: space-around; align-items: flex-start; gap: 20px;">
+        
+      <div style="flex: 1; text-align: center;">
+        <img src="./assets/videos/image_gt.gif" alt="KNN Pseudo-GT Generation" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+        <p style="margin-top: 5px; font-weight: bold;">(a) KNN Pseudo-GT</p>
+      </div>
+
+      <div style="flex: 1; text-align: center;">
+        <img src="./assets/videos/projection_gt.gif" alt="Projection-Based Pseudo-GT Generation" style="max-width: 100%; height: auto; border: 1px solid #ccc;">
+        <p style="margin-top: 5px; font-weight: bold;">(b) Projection-Based Pseudo-GT</p>
+      </div>
+
+    </div>
+    </div>
+</section>
+
+</body></html>

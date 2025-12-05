@@ -126,6 +126,14 @@
                 </a>
               </span>
 
+              <span class="link-block">
+                  <a href="#bibtex" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <svg class="svg-inline--fa fa-book fa-w-14" aria-hidden="true" data-prefix="fa" data-icon="book" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M448 360V24c0-13.3-10.7-24-24-24H96C43 0 0 43 0 96v320c0 53 43 96 96 96h328c13.3 0 24-10.7 24-24v-16c0-7.5-3.5-14.3-8.9-18.7-4.2-15.4-4.2-59.3 0-74.7 5.4-4.3 8.9-11.1 8.9-18.6zM128 134c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm0 64c0-3.3 2.7-6 6-6h212c3.3 0 6 2.7 6 6v20c0 3.3-2.7 6-6 6H134c-3.3 0-6-2.7-6-6v-20zm253.4 250H96c-17.7 0-32-14.3-32-32 0-17.6 14.4-32 32-32h285.4c-1.9 17.1-1.9 46.9 0 64z"></path></svg><!-- <i class="fa fa-book"></i> -->
+                  </span>
+                  <span>BibTeX</span>
+                </a>
+              </span>
 
             <div class="column has-text-centered">
               <p>Please use desktop or PC to view this page for sliding video comparisons.</p> <br>
@@ -136,43 +144,52 @@
       </div>
     </div>
   </section>
-    
+
+  <section class="section" style="margin-top: -150px;">
+    <div class="container is-max-desktop">
+      </div>
+  </section>
 
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Method. -->
-      <h2 class="title is-3">Overview</h2>
+      <h2 class="title is-3" style="text-align: center;">Abstract</h2>
+      <div class="content has-text-justified">
+          <p>
+            Novel View Synthesis (NVS) has traditionally relied on models with explicit 3D inductive biases combined with known camera parameters from Structure-from-Motion (SfM) beforehand. 
+            Recent vision foundation models like VGGT take an orthogonal approach -- 3D knowledge is gained implicitly through training data and loss objectives, enabling feed-forward prediction of both camera parameters and 3D representations directly from a set of uncalibrated images. 
+            While flexible, VGGT features lack explicit multi-view geometric consistency, and we find that improving such 3D feature consistency benefits both NVS and pose estimation tasks. 
+            We introduce Selfi, a self-improving 3D reconstruction pipeline via feature alignment, transforming a VGGT backbone into a high-fidelity 3D reconstruction engine by leveraging its own  outputs as pseudo-ground-truth. 
+            Specifically, we train a lightweight feature adapter using a reprojection-based consistency loss, which distills VGGT outputs into a new geometrically-aligned feature space that captures spatial proximity in 3D.
+            This enables state-of-the-art performance in both NVS and camera pose estimation, demonstrating the benefits of feature alignment for downstream 3D reasoning.
+          </p>
+      </div>
       <figure>
           <img src="./assets/project_page_img.jpg" alt="Description of the image">
           <!-- <figcaption>Description of the image goes here</figcaption> -->
       </figure>
-      <div class="content has-text-justified">
-          <p>
-We leverage a 3D foundation model (e.g., VGGT) to learn geometrically aligned features that guide Gaussian primitive prediction and pose refinement via bundle adjustment, significantly improving final rendering quality.
-          </p>
-      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container is-max-desktop">
       <!-- Method. -->
-      <h2 class="title is-3">Method</h2>
+      <h2 class="title is-3" style="text-align: center;">Method</h2>
+      <div class="content has-text-justified">
+          <p>
+            Using a pretrained VGGT backbone, we use predicted depth and camera parameters as pseudo-GT to align features obtained from a DPT adapter on top of VGGT image tokens. We sample query points and reproject these points to a target view using depth and camera parameters. Our loss function encourages the features at these two corresponding locations from source and target frames to be similar.
+          </p>
+      </div>
       <figure>
           <img src="./assets/method.png" alt="Description of the image">
           <!-- <figcaption>Description of the image goes here</figcaption> -->
       </figure>
-      <div class="content has-text-justified">
-          <p>
-Using a pretrained VGGT backbone, we align DPT adapter features by reprojecting query points via predicted depth and camera parameters, enforcing similarity between corresponding source and target locations.
-          </p>
-      </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title is-3">Qualitative Comparisons</h2>
+      <h2 class="title is-3" style="text-align: center;">Qualitative Comparisons</h2>
       <p>
           We compare our method with AnySplat and WorldMirror on both DL3DV and RealEstate10K.
       </p>
@@ -666,7 +683,7 @@ still working on this
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Feature Matching Visualization</h2>
+    <h2 class="title is-3" style="text-align: center;">Feature Matching Visualization</h2>
     <p>
 	We sample points in the first frame and use our aligned features to find correspondences in the subsequent frames.
     </p>
@@ -725,7 +742,7 @@ still working on this
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">Pseudo-GT Generation</h2>
+    <h2 class="title is-3" style="text-align: center;">Pseudo-GT Generation</h2>
     <p>
       We compare two different methods for generating pseudo-GT for geometric feature alignment. Please check supp for explanations.
     </p>
@@ -745,6 +762,30 @@ still working on this
 
     </div>
     </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3" style="text-align: center;">Acknowledgments</h2>
+    <p>
+          We would like to thank Xichen Pan and Noah Snavely for insightful discussions during the project, and Clément Godard, Michael Broxton, and Maggie Oh for help with compute support. Additionally, we thank Stephen Lombardi, Ryan Overbeck, and Jason Lawrence for helpful suggestions and feedback.
+    </p>
+    <br>
+    </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+<div id="bibtex">
+    <h2 class="title is-3" style="text-align: center;">BibTeX</h2>
+    <pre style="text-align: left;">@article{deng2025self,
+    title={Selfi: Self Improving Reconstruction Engine via 3D Geometric Feature Alignment},
+    author={Deng, Youming and Peng, Songyou and Zhang, Junyi and Heal, Kathryn and Sun, Tiancheng and Flynn, John and Marschner, Steve and Chai, Lucy},
+    journal={arXiv preprint arXiv:},
+    year={2025}
+}
+</div>
 </section>
 
 </body></html>

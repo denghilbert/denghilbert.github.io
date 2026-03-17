@@ -1,145 +1,397 @@
 <!DOCTYPE html>
-<!-- saved from url=(0030)https://denghilbert.github.io/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Youming Deng's Homepage </title>
-        <meta name="author" content="Youming Deng">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="keywords" content="Youming, Youming Deng, Wuhan University, WHU, youming, youming deng, whu">
-        <link rel="icon" href="https://denghilbert.github.io/images/person-digging-solid.svg">
-        <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-25H6S86264"></script><script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-25H6S86264');
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Youming Deng's Homepage</title>
+    <meta name="author" content="Youming Deng">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Youming, Youming Deng, Wuhan University, WHU, youming, youming deng, whu, Cornell">
+    <link rel="icon" href="./images/person-digging-solid.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-25H6S86264"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-25H6S86264');
     </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { font-size: 16px; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #222;
+            background: #fafafa;
+        }
+
+        .page-wrapper {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 48px 24px 80px;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 48px;
+            margin-bottom: 40px;
+        }
+
+        .hero-text { flex: 1; }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .hero .position {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .hero .position span {
+            display: block;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .links a {
+            color: #b31b1b;
+            text-decoration: none;
+        }
+
+        .links a:hover { text-decoration: underline; }
+
+        .links .link-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #444;
+        }
+
+        .links .link-label {
+            min-width: 110px;
+            color: #666;
+        }
+
+.hero-photo img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+
+        /* ── Divider ── */
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 32px 0;
+        }
+
+        /* ── Sections ── */
+        section { margin-bottom: 40px; }
+
+        section h2 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+            margin-bottom: 16px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #b31b1b;
+            display: inline-block;
+        }
+
+        /* ── About ── */
+        .about p {
+            color: #333;
+        }
+
+        .about p a {
+            color: #b31b1b;
+            text-decoration: none;
+        }
+
+        .about p a:hover { text-decoration: underline; }
+
+        /* ── Publications ── */
+        .pub-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .pub-item {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .pub-thumb {
+            width: 160px;
+            flex-shrink: 0;
+        }
+
+        .pub-thumb img {
+            width: 160px;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #e8e8e8;
+            display: block;
+        }
+
+        .pub-info { flex: 1; }
+
+        .pub-title {
+            font-weight: 600;
+            font-size: 0.97rem;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .pub-authors {
+            font-size: 0.875rem;
+            color: #444;
+            margin-bottom: 4px;
+        }
+
+        .pub-authors a {
+            color: #444;
+            text-decoration: none;
+        }
+
+        .pub-authors a:hover { text-decoration: underline; }
+
+        .pub-venue {
+            font-size: 0.875rem;
+            color: #555;
+            margin-bottom: 7px;
+        }
+
+        .pub-venue em { font-style: italic; }
+
+        .pub-venue .highlight {
+            color: #b31b1b;
+            font-weight: 600;
+        }
+
+        .pub-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 0.82rem;
+        }
+
+        .pub-links a {
+            display: inline-block;
+            padding: 2px 10px;
+            border: 1px solid #c8c8c8;
+            border-radius: 20px;
+            color: #333;
+            text-decoration: none;
+            background: #fff;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .pub-links a:hover {
+            border-color: #b31b1b;
+            color: #b31b1b;
+        }
+
+        /* ── Services ── */
+        .services p {
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 600px) {
+            .hero { flex-direction: column-reverse; gap: 24px; }
+            .hero-photo img { width: 140px; height: 140px; }
+            .pub-item { flex-direction: column; }
+            .pub-thumb { width: 100%; }
+            .pub-thumb img { width: 100%; }
+        }
+    </style>
 </head>
-    <body><table border="0" width="980px" align="center"><tbody><tr><td>
-    
-        </td><td valign="top">
-<!--            <img src="images/cmuscslogo.gif">
-                <img src="images/rilogo.png"> -->
-        <br>
-        <table style="font-size: 11pt;" border="0" width="100%">
-            <tbody><tr>
+<body>
+<div class="page-wrapper">
 
-                <td>
-                    <font face="helvetica, ariel, &#39;sans serif&#39;" size="6"> 
-                        <b>Youming Deng</b><br><br>
-                    </font>
-                    <font face="helvetica, ariel, &#39;sans serif&#39;" size="4"> 
-                        PhD Student<br>
-                        CS Department<br>
-                        Cornell University<br><br>
-                        Email: <a>ymdeng@cs.cornell.edu</a> <br>
-                        Résumé: <a href="./images/resume.pdf">PDF</a> <br>
-                        Twitter: <a href="https://twitter.com/denghilbert">@denghilbert</a> <br>
-                        Google Scholar: <a href="https://scholar.google.com/citations?user=RJHSzD4AAAAJ&hl=en">Link</a> <br>
-                        <!-- Github: <a href="https://github.com/denghilbert">denghilbert</a> <br> -->
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-text">
+            <h1>Youming Deng</h1>
+            <div class="position">
+                <span>PhD Student</span>
+                <span>Department of Computer Science</span>
+                <span>Cornell University</span>
+            </div>
+            <div class="links">
+                <div class="link-row">
+                    <span class="link-label">Email</span>
+                    <span>ymdeng@cs.cornell.edu</span>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Résumé</span>
+                    <a href="./images/resume.pdf">PDF</a>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Twitter / X</span>
+                    <a href="https://twitter.com/denghilbert">@denghilbert</a>
+                </div>
+                <div class="link-row">
+                    <span class="link-label">Google Scholar</span>
+                    <a href="https://scholar.google.com/citations?user=RJHSzD4AAAAJ&hl=en">Profile</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="./images/head.jpg" alt="Youming Deng">
+        </div>
+    </div>
 
-                    </font>
-                </td>
-                <td width="50%">
-                    <img width="250" src="./images/head.jpg" border="0">
-                        </td>
-            </tr>
-        </tbody></table> 
+    <hr>
+
+    <!-- About -->
+    <section class="about">
+        <h2>About Me</h2>
         <p>
-        </p><hr size="1" align="left" noshade="">
-        <p>
-        
-        <font face="helvetica, ariel, &#39;sans serif&#39;"> 
-        </font></p><h2><font face="helvetica, ariel, &#39;sans serif&#39;">About Me</font></h2><font face="helvetica, ariel, &#39;sans serif&#39;">
-        Building something new in stealth mode. PhD student at Cornell working with <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>. Bachelor's from Wuhan University.
-         <!-- I was fortunate to work with <a href="https://scholar.google.com/citations?user=wn9hc6UAAAAJ&amp;hl=en">Yansheng Li</a>, <a href="http://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a>, <a href="https://rgl.epfl.ch/people/wjakob/">Wenzel Jakob</a>, and <a href="https://www.pauldebevec.com/">Paul Debevec</a>.<br> -->
-        <h2>Publications </h2>
-        <font face="helvetica, ariel, &#39;sans serif&#39;">
-            <table cellspacing="17">
+            Building something new in stealth mode. PhD student at Cornell working with <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>. Bachelor's from Wuhan University.
+        </p>
+    </section>
 
-            <tbody>
-                <!-- <tr>
-                    <td width="45%">
-                        <img width="320" src="./images/selfi.png" border="0">
-                            </td>
-                    <td> -->
-                        <b>Selfi: Self Improving Reconstruction Engine via 3D Geometric Feature Alignment</b>
-                        <br>
-                        Youming Deng, 
-                        <a href="https://pengsongyou.github.io/">Songyou Peng</a>, 
-                        <a href="https://www.junyi42.com/">Junyi Zhang</a>, 
-                        <a href="https://kathrynheal.com/">Kathryn Heal</a>, 
-                        <a href="https://www.kevinkingo.com/">Tiancheng Sun</a>, 
-                        <a href="https://scholar.google.com/citations?user=G6eENb8AAAAJ&hl=en">John Flynn</a>, 
-                        <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>, 
+    <!-- Publications -->
+    <section>
+        <h2>Publications</h2>
+        <div class="pub-list">
+
+            <div class="pub-item">
+                <div class="pub-thumb">
+                    <img src="./images/selfi.png" alt="Selfi thumbnail">
+                </div>
+                <div class="pub-info">
+                    <div class="pub-title">Selfi: Self Improving Reconstruction Engine via 3D Geometric Feature Alignment</div>
+                    <div class="pub-authors">
+                        Youming Deng,
+                        <a href="https://pengsongyou.github.io/">Songyou Peng</a>,
+                        <a href="https://www.junyi42.com/">Junyi Zhang</a>,
+                        <a href="https://kathrynheal.com/">Kathryn Heal</a>,
+                        <a href="https://www.kevinkingo.com/">Tiancheng Sun</a>,
+                        <a href="https://scholar.google.com/citations?user=G6eENb8AAAAJ&hl=en">John Flynn</a>,
+                        <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>,
                         <a href="https://people.csail.mit.edu/lrchai/">Lucy Chai</a>
-                        <br>
-                        In <em>Conference on Computer Vision and Pattern Recognition (CVPR), </em>2026. 
-                        <!-- <br>
-                        <span style="color:red;">Selected as highlight</span> 
-                        <br> -->
-                        [<a href="https://arxiv.org/abs/2512.08930">Paper</a>]
-                        [<a href="https://denghilbert.github.io/selfi/">Project Page</a>]
-                        <br>
-                        <br>
+                    </div>
+                    <div class="pub-venue">
+                        <em>Conference on Computer Vision and Pattern Recognition (CVPR)</em>, 2026
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2512.08930">Paper</a>
+                        <a href="https://denghilbert.github.io/selfi/">Project Page</a>
+                    </div>
+                </div>
+            </div>
 
-                    <!-- </td>
-                </tr>
+            <div class="pub-item">
+                <div class="pub-thumb">
+                    <img src="./images/self-cali.jpg" alt="Self-Calibrating GS thumbnail">
+                </div>
+                <div class="pub-info">
+                    <div class="pub-title">Self-Calibrating Gaussian Splatting for Large Field of View Reconstruction</div>
+                    <div class="pub-authors">
+                        Youming Deng,
+                        <a href="https://www.cs.cornell.edu/~wenqixian/">Wenqi Xian</a>,
+                        <a href="https://www.guandaoyang.com/">Guandao Yang</a>,
+                        <a href="https://profiles.stanford.edu/leonidas-guibas">Leonidas Guibas</a>,
+                        <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a>,
+                        <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>,
+                        <a href="https://www.pauldebevec.com/">Paul Debevec</a>
+                    </div>
+                    <div class="pub-venue">
+                        <em>International Conference on Computer Vision (ICCV <span class="highlight">Highlight</span>)</em>, 2025
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2502.09563">Paper</a>
+                        <a href="https://denghilbert.github.io/self-cali/">Project Page</a>
+                        <a href="https://github.com/denghilbert/Self-Cali-GS">Code</a>
+                    </div>
+                </div>
+            </div>
 
-                <tr>
-                    <td width="45%">
-                        <img width="320" src="./images/self-cali.jpg" border="0">
-                            </td>
-                    <td> -->
-                        <b>Self-Calibrating Gaussian Splatting for Large Field of View Reconstruction</b>
-                        <br>
-                        Youming Deng, <a href="https://www.cs.cornell.edu/~wenqixian/">Wenqi Xian</a>, <a href="https://www.guandaoyang.com/">Guandao Yang</a>, <a href="https://profiles.stanford.edu/leonidas-guibas">Leonidas Guibas</a>, <a href="https://stanford.edu/~gordonwz/">Gordon Wetzstein</a>, <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>, <a href="https://www.pauldebevec.com/">Paul Debevec</a>
-                        <br>
-                        In <em>International Conference on Computer Vision (ICCV <span style="color:red;">Highlight</span>), </em>2025. 
-                        [<a href="https://arxiv.org/abs/2502.09563">Paper</a>]
-                        [<a href="https://denghilbert.github.io/self-cali/">Project Page</a>]
-                        [<a href="https://github.com/denghilbert/Self-Cali-GS">Code</a>]
-                        <br>
-                        <br>
+            <div class="pub-item">
+                <div class="pub-thumb">
+                    <img src="./images/dip.png" alt="Physics-based Indirect Illumination thumbnail">
+                </div>
+                <div class="pub-info">
+                    <div class="pub-title">Physics-based Indirect Illumination for Inverse Rendering</div>
+                    <div class="pub-authors">
+                        Youming Deng,
+                        <a href="https://sunshineatnoon.github.io/">Xueting Li</a>,
+                        <a href="https://sifeiliu.net/">Sifei Liu</a>,
+                        <a href="http://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a>
+                    </div>
+                    <div class="pub-venue">
+                        <em>International Conference on 3D Vision (3DV)</em>, 2024
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2212.04705">Paper</a>
+                        <a href="https://denghilbert.github.io/pii/">Project Page</a>
+                        <a href="https://www.youtube.com/watch?v=THcYvkiiumM">Video</a>
+                        <a href="https://github.com/denghilbert/3DV2024-Physics-based-Indirect-Illumination-for-Inverse-Rendering">Code</a>
+                    </div>
+                </div>
+            </div>
 
-                    <!-- </td>
-                </tr>
-                <tr>
-                    <td width="45%">
-                        <img width="320" src="./images/dip.png" border="0">
-                            </td>
-                    <td> -->
-                        <b>Physics-based Indirect Illumination for Inverse Rendering</b>
-                        <br>
-                        Youming Deng, <a href="https://sunshineatnoon.github.io/">Xueting Li</a>, <a href="https://sifeiliu.net/">Sifei Liu</a>, <a href="http://faculty.ucmerced.edu/mhyang/">Ming-Hsuan Yang</a>
-                        <br>
-                        In <em>International Conference on 3D Vision (3DV)</em>, 2024.
-                        [<a href="https://arxiv.org/abs/2212.04705">Paper</a>][<a href="https://denghilbert.github.io/pii/">Project Page</a>][<a href="https://www.youtube.com/watch?v=THcYvkiiumM">Video</a>][<a href="https://github.com/denghilbert/3DV2024-Physics-based-Indirect-Illumination-for-Inverse-Rendering">Code</a>]
-                        <br>
-                        <br>
-                    <!-- <td> -->
+            <div class="pub-item">
+                <div class="pub-thumb">
+                    <img src="./images/hml.png" alt="Hierarchical Memory Learning thumbnail">
+                </div>
+                <div class="pub-info">
+                    <div class="pub-title">Hierarchical Memory Learning for Fine-Grained Scene Graph Generation</div>
+                    <div class="pub-authors">
+                        Youming Deng,
+                        <a href="https://scholar.google.com/citations?user=wn9hc6UAAAAJ&hl=en&oi=ao">Yansheng Li</a>,
+                        <a href="https://en.skyearth.org/zhangyj/">Yongjun Zhang</a>,
+                        <a href="https://sites.google.com/view/xxiang">Xiang Xiang</a>,
+                        <a href="https://scholar.google.com/citations?user=gz_hWPoAAAAJ&hl=en&oi=sra">Jian Wang</a>,
+                        <a href="https://scholar.google.com/citations?user=8SCEv-YAAAAJ&hl=en&oi=ao">Jingdong Chen</a>,
+                        <a href="https://sites.google.com/site/jiayima2013/">Jiayi Ma</a>
+                    </div>
+                    <div class="pub-venue">
+                        <em>European Conference on Computer Vision (ECCV)</em>, 2022
+                    </div>
+                    <div class="pub-links">
+                        <a href="https://arxiv.org/abs/2203.06907">Paper</a>
+                        <a href="https://github.com/denghilbert/ECCV2022-Hierarchical-Memory-Learning-for-Fine-Grained-Scene-Graph-Generation">Code</a>
+                    </div>
+                </div>
+            </div>
 
+        </div>
+    </section>
 
-                    <!-- </td>
-                </tr>
-                <tr>
-                    <td width="45%">
-                        <img width="320" src="./images/hml.png" border="0">
-                            </td>
-                    <td> -->
-                        <b>Hierarchical Memory Learning for Fine-Grained Scene Graph Generation</b>
-                        <br>
-                        Youming Deng, <a href="https://scholar.google.com/citations?user=wn9hc6UAAAAJ&hl=en&oi=ao">Yansheng Li</a>, <a href="https://en.skyearth.org/zhangyj/">Yongjun Zhang</a>, <a href="https://sites.google.com/view/xxiang">Xiang Xiang</a>, <a href="https://scholar.google.com/citations?user=gz_hWPoAAAAJ&hl=en&oi=sra">Jian Wang</a>, <a href="https://scholar.google.com/citations?user=8SCEv-YAAAAJ&hl=en&oi=ao">Jingdong Chen</a>, <a href="https://sites.google.com/site/jiayima2013/">Jiayi Ma</a>
-
-                        <br>
-                        In <em>European Conference on Computer Vision (ECCV), </em>2022.
-                        [<a href="https://arxiv.org/abs/2203.06907">Paper</a>][<a href="https://github.com/denghilbert/ECCV2022-Hierarchical-Memory-Learning-for-Fine-Grained-Scene-Graph-Generation">Code</a>]
-                    <!-- </td>
-                </tr> -->
-                
-            </tbody></table>
-        </font>
+    <!-- Academic Services -->
+    <section class="services">
         <h2>Academic Services</h2>
-        Conference Reviewers: SIGGRAPH, SIGGRAPH Asia, CVPR, ECCV, ICCV
-            
+        <p>Conference Reviewer: SIGGRAPH, SIGGRAPH Asia, CVPR, ECCV, ICCV</p>
+    </section>
 
-</font></td></tr></tbody></table><deepl-input-controller><template shadowrootmode="open"><link rel="stylesheet" href="chrome-extension://cofdbpoegempjloogbagkncekinflcnj/build/content.css"><div><div class="dl-input-translation-container svelte-ju4595"><div></div></div></div></template></deepl-input-controller></body></html>
+</div>
+</body>
+</html>

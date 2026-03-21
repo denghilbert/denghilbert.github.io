@@ -54,7 +54,7 @@
         }
 
         .hero .position {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #555;
             margin-bottom: 20px;
             line-height: 1.5;
@@ -68,7 +68,7 @@
             display: flex;
             flex-direction: column;
             gap: 5px;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
         }
 
         .links a {
@@ -86,12 +86,12 @@
         }
 
         .links .link-label {
-            min-width: 110px;
+            min-width: 140px;
             color: #666;
         }
 
 .hero-photo img {
-            max-width: 300px;
+            max-width: 350px;
             width: 100%;
             height: auto;
             border-radius: 8px;
@@ -161,13 +161,13 @@
 
         .pub-title {
             font-weight: 600;
-            font-size: 0.97rem;
+            font-size: 1.1rem;
             line-height: 1.4;
             margin-bottom: 4px;
         }
 
         .pub-authors {
-            font-size: 0.875rem;
+            font-size: 0.92rem;
             color: #444;
             margin-bottom: 4px;
         }
@@ -180,7 +180,7 @@
         .pub-authors a:hover { text-decoration: underline; }
 
         .pub-venue {
-            font-size: 0.875rem;
+            font-size: 0.92rem;
             color: #555;
             margin-bottom: 7px;
         }
@@ -218,8 +218,15 @@
         /* ── Services ── */
         .services p {
             color: #333;
-            font-size: 0.95rem;
+            font-size: 1rem;
         }
+
+        .services p a {
+            color: #b31b1b;
+            text-decoration: none;
+        }
+
+        .services p a:hover { text-decoration: underline; }
 
         /* ── Responsive ── */
         @media (max-width: 600px) {
@@ -390,6 +397,12 @@
     <section class="services">
         <h2>Academic Services</h2>
         <p>Conference Reviewer: SIGGRAPH, SIGGRAPH Asia, CVPR, ECCV, ICCV</p>
+    </section>
+
+    <!-- Misc -->
+    <section class="services">
+        <h2>Misc</h2>
+        <p>I love basketball 🏀, ski ⛷️, and travel 🚗. Drove across the whole country (almost) with my friend <a href="https://xichenpan.com/">Xichen</a>. <a href="https://www.polarsteps.com/hilbertdeng/20934089-wei-da?s=abdc6838-75a1-42bb-b2ca-c891e8b3d10d&share_trip_link_variant=Control">Check out the map</a>!</p>
     </section>
 
 </div>

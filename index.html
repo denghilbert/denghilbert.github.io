@@ -230,8 +230,12 @@
 
         /* ── Responsive ── */
         @media (max-width: 600px) {
-            .hero { flex-direction: column-reverse; gap: 24px; }
-            .hero-photo img { width: 140px; height: 140px; }
+            .page-wrapper { padding: 28px 16px 60px; }
+            .hero { flex-direction: column-reverse; gap: 24px; align-items: center; text-align: center; }
+            .hero-photo img { width: 200px; height: auto; }
+            .hero .position span { display: inline; }
+            .hero .position span + span::before { content: " · "; }
+            .links { align-items: center; }
             .pub-item { flex-direction: column; }
             .pub-thumb { width: 100%; }
             .pub-thumb img { width: 100%; }

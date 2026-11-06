@@ -10,6 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css" rel="stylesheet">
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-25H6S86264"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -31,7 +33,7 @@
         }
 
         .page-wrapper {
-            max-width: 1050px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 48px 24px 80px;
         }
@@ -77,6 +79,8 @@
         }
 
         .links a:hover { text-decoration: underline; }
+
+        .links i { margin-right: 4px; }
 
         .links .link-row {
             display: flex;
@@ -145,16 +149,34 @@
         }
 
         .pub-thumb {
-            width: 160px;
+            width: 140px;
             flex-shrink: 0;
         }
 
         .pub-thumb img {
-            width: 160px;
+            width: 140px;
             height: auto;
             border-radius: 6px;
             border: 1px solid #e8e8e8;
             display: block;
+        }
+
+        /* Zoom thumbnail on hover; only the original thumb area triggers it */
+        @media (hover: hover) and (min-width: 601px) {
+            .pub-thumb { cursor: zoom-in; }
+
+            .pub-thumb img {
+                position: relative;
+                pointer-events: none;
+                transform-origin: left center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .pub-thumb:hover img {
+                z-index: 10;
+                transform: scale(2.4);
+                box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+            }
         }
 
         .pub-info { flex: 1; }
@@ -167,7 +189,7 @@
         }
 
         .pub-authors {
-            font-size: 0.92rem;
+            font-size: 1.05rem;
             color: #444;
             margin-bottom: 4px;
         }
@@ -283,6 +305,20 @@
             margin-top: 2px;
         }
 
+        /* ── Scroll reveal ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .reveal.from-top { transform: translateY(-16px); }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
         /* ── Responsive ── */
         @media (max-width: 600px) {
             .page-wrapper { padding: 28px 16px 60px; }
@@ -312,10 +348,10 @@
             </div>
             <div class="links">
                 <div class="link-row">
-                    ymdeng@cs.cornell.edu
+                    <span><i class="fa-solid fa-envelope"></i>ymdeng@cs.cornell.edu</span>
                 </div>
                 <div class="link-row">
-                    <a href="./images/resume.pdf">Résumé</a> / <a href="https://twitter.com/denghilbert">Twitter</a> / <a href="https://scholar.google.com/citations?user=RJHSzD4AAAAJ&hl=en">Google Scholar</a> / <a href="https://www.linkedin.com/in/youming-deng-0199011ba/">LinkedIn</a>
+                    <a href="./images/resume.pdf"><i class="fa-solid fa-file-lines"></i>Résumé</a> / <a href="https://twitter.com/denghilbert"><i class="fa-brands fa-twitter"></i>Twitter</a> / <a href="https://scholar.google.com/citations?user=RJHSzD4AAAAJ&hl=en"><i class="ai ai-google-scholar"></i>Google Scholar</a> / <a href="https://www.linkedin.com/in/youming-deng-0199011ba/"><i class="fa-brands fa-linkedin"></i>LinkedIn</a>
                 </div>
             </div>
         </div>
@@ -330,7 +366,7 @@
     <section class="about">
         <h2>About Me</h2>
         <p>
-            Building something new in stealth mode. PhD student at Cornell working with <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>. Bachelor's from Wuhan University.
+            Currently building something new in stealth mode. I'm a final-year PhD student advised by <a href="https://www.cs.cornell.edu/~srm/">Steve Marschner</a>, working on 3D reconstruction and novel-view synthesis. I got my bachelor's from Wuhan University.
         </p>
     </section>
 
@@ -490,15 +526,40 @@
     <!-- Academic Services -->
     <section class="services">
         <h2>Academic Service</h2>
-        <p>Conference Reviewer: SIGGRAPH, SIGGRAPH Asia, CVPR, ECCV, ICCV, NIPS</p>
+        <p>Conference Reviewer: SIGGRAPH, SIGGRAPH Asia, CVPR, ECCV, ICCV, NeurIPS</p>
     </section>
 
     <!-- Misc -->
     <section class="services">
         <h2>Misc</h2>
-        <p>I love basketball 🏀, ski ⛷️, and travel 🚗. Drove across the whole country (almost) with my friend <a href="https://xichenpan.com/">Flash</a>. Check out the <a href="https://www.polarsteps.com/hilbertdeng/20934089-wei-da?s=abdc6838-75a1-42bb-b2ca-c891e8b3d10d&share_trip_link_variant=Control">map</a>!</p>
+        <p>I love basketball 🏀, ski ⛷️, and travel 🚗.<br>Drove across the whole country (almost) with my friend <a href="https://xichenpan.com/">Flash</a>. Check out the <a href="https://www.polarsteps.com/hilbertdeng/20934089-wei-da?s=2eb15a00-a37a-4ac8-b6f4-4b9b4650c7d2">map</a>!</p>
     </section>
 
 </div>
+<script>
+    // Fade content in as it scrolls into view, in either direction
+    if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const observer = new IntersectionObserver((entries) => {
+            let i = 0;
+            entries.forEach(e => {
+                const el = e.target;
+                if (e.isIntersecting) {
+                    el.style.transitionDelay = `${Math.min(i++, 4) * 80}ms`;
+                    el.classList.add('visible');
+                } else {
+                    // Reset once off screen so it animates in from the edge it left through
+                    el.style.transitionDelay = '0ms';
+                    el.classList.toggle('from-top', e.boundingClientRect.top < 0);
+                    el.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.hero, section > h2, section > p, .pub-item, .exp-item').forEach(el => {
+            el.classList.add('reveal');
+            observer.observe(el);
+        });
+    }
+</script>
 </body>
 </html>
